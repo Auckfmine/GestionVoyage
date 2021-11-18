@@ -20,7 +20,7 @@ class VoyageController extends AbstractController
      */
     public function index(VoyageRepository $voyageRepository): Response
     {
-        return $this->render('voyage/index.html.twig', [
+        return $this->render('ttttt/preview.themeforest.net/item/conexi-online-taxi-booking-service-html-template/full_screen_preview/245209188627.html', [
             'voyages' => $voyageRepository->findAll(),
         ]);
     }
