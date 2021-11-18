@@ -25,13 +25,13 @@ class Depot
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Capacité is required")
      */
-    private $Capacité;
+    private $Capacite;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Catégorie is required")
      */
-    private $Catégorie;
+    private $Categorie;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -60,26 +60,26 @@ class Depot
         return $this->id;
     }
 
-    public function getCapacité(): ?int
+    public function getCapacite(): ?int
     {
-        return $this->Capacité;
+        return $this->Capacite;
     }
 
-    public function setCapacité(int $Capacité): self
+    public function setCapacite(int $Capacite): self
     {
-        $this->Capacité = $Capacité;
+        $this->Capacite = $Capacite;
 
         return $this;
     }
 
-    public function getCatégorie(): ?string
+    public function getCategorie(): ?string
     {
-        return $this->Catégorie;
+        return $this->Categorie;
     }
 
-    public function setCatégorie(string $Catégorie): self
+    public function setCategorie(string $Categorie): self
     {
-        $this->Catégorie = $Catégorie;
+        $this->Categorie = $Categorie;
 
         return $this;
     }

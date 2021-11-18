@@ -12,8 +12,8 @@ class DepotType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Capacité')
-            ->add('Catégorie')
+            ->add('Capacite')
+            ->add('Categorie')
             ->add('Localisation')
             ->add('Etat')
         ;
