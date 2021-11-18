@@ -20,7 +20,7 @@ class VoyageController extends AbstractController
      */
     public function index(VoyageRepository $voyageRepository): Response
     {
-        return $this->render('', [
+        return $this->render('voyage/index.html.twig', [
             'voyages' => $voyageRepository->findAll(),
         ]);
     }

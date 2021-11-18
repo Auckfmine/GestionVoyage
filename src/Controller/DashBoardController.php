@@ -13,7 +13,7 @@ class DashBoardController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('dashboard/thevectorlab.net/codelab/index.html.twig', [
+        return $this->render('base.html.twig', [
             'controller_name' => 'DashBoardController',
         ]);
     }
