@@ -13,7 +13,7 @@ class IndexController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render('main_front/preview.themeforest.net/item/conexi-online-taxi-booking-service-html-template/full_screen_preview/245209188627.html', [
+        return $this->render('/frontOffice/index.html.twig', [
             'controller_name' => 'IndexController',
         ]);
     }
