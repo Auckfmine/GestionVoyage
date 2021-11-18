@@ -1,0 +1,55 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}MoyenDeTransport index{% endblock %}
+
+{% block body %}
+    <h1>MoyenDeTransport index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Num_ligne</th>
+                <th>Date_de_mise_en_circulations</th>
+                <th>Etat</th>
+                <th>Accessible_au_handicape</th>
+                <th>Prix_Achat</th>
+                <th>Poids</th>
+                <th>Longueur</th>
+                <th>Largeur</th>
+                <th>Energie</th>
+                <th>Nombre_de_place</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for moyen_de_transport in moyen_de_transports %}
+            <tr>
+                <td>{{ moyen_de_transport.id }}</td>
+                <td>{{ moyen_de_transport.Type }}</td>
+                <td>{{ moyen_de_transport.NumLigne }}</td>
+                <td>{{ moyen_de_transport.DateDeMiseEnCirculations ? moyen_de_transport.DateDeMiseEnCirculations|date('Y-m-d') : '' }}</td>
+                <td>{{ moyen_de_transport.Etat }}</td>
+                <td>{{ moyen_de_transport.AccessibleAuHandicape }}</td>
+                <td>{{ moyen_de_transport.PrixAchat }}</td>
+                <td>{{ moyen_de_transport.Poids }}</td>
+                <td>{{ moyen_de_transport.Longueur }}</td>
+                <td>{{ moyen_de_transport.Largeur }}</td>
+                <td>{{ moyen_de_transport.Energie }}</td>
+                <td>{{ moyen_de_transport.NombreDePlace }}</td>
+                <td>
+                    <a href="{{ path('moyen_de_transport_show', {'id': moyen_de_transport.id}) }}">show</a>
+                    <a href="{{ path('moyen_de_transport_edit', {'id': moyen_de_transport.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('moyen_de_transport_new') }}">Create new</a>
+{% endblock %}
