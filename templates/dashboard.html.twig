@@ -16,7 +16,7 @@
         <!--web fonts-->
         <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--bootstrap styles-->
         <link href={{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
 
@@ -241,26 +241,26 @@
         <div class="left-sidebar">
             <nav class="sidebar-menu">
                 <ul id="nav-accordion">
-                    <li class="sub-menu">
-                        <a href="javascript:;" class="active">
-                            <i class=" ti-home"></i>
-                            <span>Dashboard</span>
-                        </a>
-                        <ul class="sub">
-                            <li class="active"><a  href="dashboard/thevectorlab.net/codelab/index.html.twig">Dashboard</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/dashboard-2.html">Dashboard 2</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/dashboard-3.html">Dashboard 3</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/dashboard-4.html">Dashboard 4</a></li>
-                        </ul>
-                    </li>
-
                     <li class="nav-title">
                         <h5 class="text-uppercase">Components</h5>
                     </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="active">
+                            <i class="far fa-user"></i>
+                            <span>Utilisateur</span>
+                        </a>
+                        <ul class="sub">
+                            <li class="active"><a  href="dashboard/thevectorlab.net/codelab/index.html.twig">Liste Utilisateurs</a></li>
+                            <li><a  href="dashboard/thevectorlab.net/codelab/dashboard-2.html">Ajouter Utilisateur</a></li>
+
+                        </ul>
+                    </li>
+
+
 
                     <li class="sub-menu">
                         <a href="javascript:;" >
-                            <i class=" icon-speech"></i>
+                            <i class="fas fa-bus"></i>
                             <span>Voyage</span>
                         </a>
                         <ul class="sub">
@@ -294,7 +294,10 @@
 
                     <li class="sub-menu">
                         <a href="javascript:;">
-                            <i class=" icon-grid"></i>
+
+                            <i class="fas fa-subway"></i>
+
+
                             <span>Station</span>
                         </a>
                         <ul class="sub">

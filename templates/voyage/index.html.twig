@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard.html.twig' %}
 
 {% block title %}Voyage index{% endblock %}
 
 {% block body %}
-    <h1>Voyage index</h1>
+    <h1>Liste Des Voyages</h1>
 
     <table class="table">
         <thead>
@@ -12,6 +12,7 @@
                 <th>Ref_voyage</th>
                 <th>Station_Depart</th>
                 <th>Station_Arrive</th>
+                <th>Vehicule</th>
                 <th>Ligne</th>
 
                 <th>Date_depart</th>
@@ -26,6 +27,7 @@
                 <td>{{ voyage.refVoyage }}</td>
                 <td>{{ voyage.getStationDepart()}}</td>
                 <td>{{ voyage.getStationArrive()}}</td>
+                <td>{{ voyage.MoyenDeTransport }}</td>
                 <td>{{ voyage.ligne ? voyage.ligne|join(', ') : '' }}</td>
                 <td>{{ voyage.dateDepart ? voyage.dateDepart|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ voyage.dateArrive ? voyage.dateArrive|date('Y-m-d H:i:s') : '' }}</td>
