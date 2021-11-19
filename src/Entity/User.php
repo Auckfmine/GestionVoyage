@@ -63,11 +63,16 @@ class User
 
     /**
      * @ORM\Column(type="string", length=150)
+     *
+     * @Assert\NotBlank
+     *
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=32)
+     * @Assert\Regex(pattern="/^(?=.*[a-z])(?=.*\d).{6,}$/i", message="New password is required to be minimum 6 chars in length and to include at least one letter and one number."
+     * )
      */
     private $password;
 
@@ -77,6 +82,7 @@ class User
     private $role;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="date")
      */
     private $birthday;
