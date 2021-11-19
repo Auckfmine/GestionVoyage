@@ -20,7 +20,17 @@ class VoyageController extends AbstractController
      */
     public function index(VoyageRepository $voyageRepository): Response
     {
-        return $this->render('voyage/index.html.twig.twig', [
+        return $this->render('voyage/index.html.twig', [
+            'voyages' => $voyageRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/fetch", name="voyage_fetch", methods={"GET"})
+     */
+    public function fetch(VoyageRepository $voyageRepository): Response
+    {
+        return $this->render('frontOffice/index-2.html.twig', [
             'voyages' => $voyageRepository->findAll(),
         ]);
     }

@@ -62,10 +62,12 @@
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li class="current"><a href="index.html.twig">Home</a></li>
-									<li><a href="index-1.html">About</a></li>
-									<li><a href="index-2.html">Cars</a></li>
-									<li><a href="index-3.html">Services</a></li>
+									<li class="current"><a href="index.html.twig">Acceuil</a></li>
+									<li><a href="index-1.html.twig">A propo</a></li>
+									<li><a href="index-2.html.twig">Nos Depos</a></li>
+									<li><a href={{ path('voyage_fetch') }}>Nos Voyages</a></li>
+									<li><a href="index-4.html">Services</a></li>
+
 									<li><a href="index-4.html">Contacts</a></li>
 									<li style="position: absolute; right: -135px;"><a href="#">connecter</a></li>
 								</ul>
@@ -77,20 +79,16 @@
 				</div>
 				<div class="container_12">
 					<div class="grid_12">
-						<h1>
-							<a href="index.html.twig">
-								<img src={{ asset('main_front/images/logo.png') }} alt="Your Happy Family">
-							</a>
-						</h1>
+
 					</div>
 				</div>
 				<div class="clear"></div>
 			</header>
-			<div class="slider_wrapper ">
+			<div class="slider_wrapper">
 				<div id="camera_wrap" >
-					<div data-src={{ asset('/main_front/images/slide.jpg') }}></div>
-					<div data-src={{ asset('/main_front/images/slide1.jpg') }}></div>
-					<div data-src={{ asset('images/slide2.jpg') }}></div>
+					<div style="width:1920px;height: 540px" data-src={{ asset('/main_front/images/metro1.jpg') }}></div>
+					<div data-src={{ asset('/main_front/images/bus.jpg') }}></div>
+					<div data-src={{ asset('images/train.jpg') }}></div>
 				</div>
 			</div>
 			<div class="container_12">
@@ -99,8 +97,8 @@
 						<div class="maxheight">
 							<div class="banner_title">
 								<img src={{ asset('main_front/images/icon1.png') }} alt="">
-								<div class="extra_wrapper">Fast&amp;
-									<div class="color1">Safe</div>
+								<div class="extra_wrapper">Rapide&amp;
+									<div class="color1">Securisé</div>
 								</div>
 							</div>
 							Dorem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuad
@@ -113,8 +111,8 @@
 						<div class="maxheight">
 							<div class="banner_title">
 								<img src={{ asset('main_front/images/icon2.png') }} alt="">
-								<div class="extra_wrapper">Best
-									<div class="color1">Prices</div>
+								<div class="extra_wrapper">Meilleurs
+									<div class="color1">Prix</div>
 								</div>
 							</div>
 							Hem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuader
@@ -127,8 +125,8 @@
 						<div class="maxheight">
 							<div class="banner_title">
 								<img src={{ asset('main_front/images/icon3.png') }} alt="">
-								<div class="extra_wrapper">Package
-									<div class="color1">Delivery</div>
+								<div class="extra_wrapper">Comfort
+									<div class="color1">Ponctuel</div>
 								</div>
 							</div>
 							Kurem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuki
@@ -217,9 +215,9 @@
 						</form>
 					</div>
 					<div class="grid_6 prefix_1">
-						<a href="index2.html" class="type"><img src={{ asset('main_front/images/page1_img1.jpg') }} alt=""><span class="type_caption">Economy</span></a>
-						<a href="index2.html" class="type"><img src={{ asset('main_front/images/page1_img2.jpg') }} alt=""><span class="type_caption">Standard</span></a>
-						<a href="index2.html" class="type"><img src={{ asset('main_front/images/page1_img3.jpg') }} alt=""><span class="type_caption">Lux</span></a>
+						<a href="index2.html" class="type"><img src={{ asset('main_front/images/bus1.jpg') }} alt=""><span class="type_caption">Bus</span></a>
+						<a href="index2.html" class="type"><img src={{ asset('main_front/images/train1.jpg') }} alt=""><span class="type_caption">Train</span></a>
+						<a href="index2.html" class="type"><img src={{ asset('main_front/images/metro.jpg') }} alt=""><span class="type_caption">Metro</span></a>
 					</div>
 					<div class="clear"></div>
 				</div>

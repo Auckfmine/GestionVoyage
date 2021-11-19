@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MoyenDeTransportRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\String_;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -241,5 +242,12 @@ class MoyenDeTransport
         $this->depot = $depot;
 
         return $this;
+    }
+
+    public function __toString(){
+        // to show the name of the Category in the select
+        return (String)$this->getId();
+        // to show the id of the Category in the select
+        // return $this->id;
     }
 }
