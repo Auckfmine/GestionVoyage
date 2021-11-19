@@ -20,12 +20,12 @@ class User
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 26,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
-     * )
+         * @Assert\Length(
+         *      min = 2,
+         *      max = 26,
+         *      minMessage = "Your first name must be at least {{ limit }} characters long",
+         *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+         * )
      */
     private $first_name;
 
@@ -53,7 +53,7 @@ class User
     /**
      * @ORM\Column(type="integer")
      *  @Assert\Length(
-     *
+     *      min=8,
      *      max = 8,
      *
      *      maxMessage = "Your number cannot be longer than {{ limit }} characters"
