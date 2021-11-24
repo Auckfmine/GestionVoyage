@@ -13,7 +13,7 @@ class IndexController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render('/frontOffice/index.html.twig', [
+        return $this->render('/demo/index.html.twig', [
             'controller_name' => 'IndexController',
         ]);
     }
