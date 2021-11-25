@@ -20,7 +20,7 @@ class StationController extends AbstractController
      */
     public function index(StationRepository $stationRepository): Response
     {
-        return $this->render('station/index.html.twig', [
+        return $this->render('station/detailVoyage.html.twig.twig', [
             'stations' => $stationRepository->findAll(),
         ]);
     }

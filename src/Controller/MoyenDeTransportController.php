@@ -21,7 +21,7 @@ class MoyenDeTransportController extends AbstractController
      */
     public function index(MoyenDeTransportRepository $moyenDeTransportRepository): Response
     {
-        return $this->render('moyen_de_transport/index.html.twig', [
+        return $this->render('moyen_de_transport/detailVoyage.html.twig.twig', [
             'moyen_de_transports' => $moyenDeTransportRepository->findAll(),
         ]);
     }

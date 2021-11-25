@@ -20,11 +20,21 @@ class VoyageController extends AbstractController
      */
     public function index(VoyageRepository $voyageRepository): Response
     {
-        return $this->render('voyage/index.html.twig', [
+        return $this->render('voyage/detailVoyage.html.twig.twig', [
             'voyages' => $voyageRepository->findAll(),
         ]);
     }
 
+    /**
+     * @Route("/listVoyages", name="list_voyages", methods={"GET"})
+     */
+    public function listVoy(VoyageRepository $voyageRepository): Response
+    {
+        return $this->render('demo/tours/tour-3-columns-video-header/voyageShowCase.html.twig', [
+            'voyages' => $voyageRepository->findAll(),
+        ]);
+    }
+    
     /**
      * @Route("/fetch", name="voyage_fetch", methods={"GET"})
      */
@@ -32,8 +42,20 @@ class VoyageController extends AbstractController
     {
         return $this->render('frontOffice/index-2.html.twig', [
             'voyages' => $voyageRepository->findAll(),
+
         ]);
     }
+
+    /**
+     * @Route("/voyage-detail/{id}", name="voyage_detail", methods={"GET"})
+     */
+    public function voyageDetail(Voyage $voyage): Response
+    {
+        return $this->render('demo/tour/french-autumn/detailVoyage.html.twig', [
+            'voyage' => $voyage,
+        ]);
+    }
+
 
     /**
      * @Route("/new", name="voyage_new", methods={"GET","POST"})
