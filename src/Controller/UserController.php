@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserFormType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class UserController extends AbstractController
@@ -15,11 +18,35 @@ class UserController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function login()
+    public function login(Request $request):Response
     {
+        $user=new User();
+        $user->setBirthday(new \DateTime());
+        $form=$this->createFormBuilder($user)
+            ->add('username',TextType::class)
+            ->add('password', PasswordType::class)
+            ->getForm();
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $pwd=$user->getPassword();
+            $username=$user->getUsername();
+            $repository =$this->getDoctrine()->getRepository(User::class);
+            $user1=$repository->findOneBy(array('username'=>$username,'password'=>$pwd));
+            if($user1){
+                if($user1->getRole()=="CLIENT"){
+                    return $this->redirect('/');
+                }
+                else{
+                    return $this->redirect('dashboard');
+                }
 
+            }
 
-        return $this->render('user/login.html.twig');
+        }
+        return $this->render('user/login.html.twig',[
+            'user'=>$user,
+            'form'=>$form->createView(),
+        ]);
     }
 
     /**
