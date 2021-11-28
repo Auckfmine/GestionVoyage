@@ -9,7 +9,7 @@ class TwilioApi
 {
 
     public $account_sid = 'AC827499c505a0825c13b9c15a5e57dcde';
-    public $auth_token = 'd589a578a83dfa05c0bc815e5206a016';
+    public $auth_token = '6c919d52d4ce5021a1a8a2487ed0e5f6';
     public $twilio_number = '+14704444081';
     public $client  ;
 
