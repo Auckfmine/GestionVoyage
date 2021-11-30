@@ -7,15 +7,36 @@ use function PHPUnit\Framework\throwException;
 
 class TwilioApi
 {
+    /**
+     * @var Client
+     */
+    private $client;
+    /**
+     * @var string
+     */
+    private $auth_token;
+    /**
+     * @var string
+     */
+    private $account_sid;
+    /**
+     * @var string
+     */
+    private $twilio_number;
 
-    public $account_sid = 'AC827499c505a0825c13b9c15a5e57dcde';
-    public $auth_token = '6c919d52d4ce5021a1a8a2487ed0e5f6';
-    public $twilio_number = '+14704444081';
-    public $client  ;
 
-    public function __construct()
+    /**
+     * @param string $account_sid
+     * @param string $auth_token
+     * @param string $twilio_number
+     * @param $client
+     */
+    public function __construct(string $account_sid, string $auth_token, string $twilio_number)
     {
-        $this->client = new Client($this->account_sid , $this->auth_token);
+        $this->account_sid = $account_sid;
+        $this->auth_token = $auth_token;
+        $this->twilio_number = $twilio_number;
+        $this->client = new Client($account_sid ,$auth_token);
     }
 
 
@@ -27,6 +48,7 @@ class TwilioApi
         }
         catch (TwilioException $e){
             echo 'error sending sms';
+            echo $e->getMessage();
             throwException($e);
         }
 
