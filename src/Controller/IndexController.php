@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
+/**
+ * @Route("/")
+ */
 class IndexController extends AbstractController
 {
     /**
@@ -26,4 +28,19 @@ class IndexController extends AbstractController
             'controller_name' => 'IndexController',
         ]);
     }
+
+
+    /**
+     * @Route("/map", name="map")
+     *
+     */
+
+    public function maps(): Response
+    {
+
+        return $this->render('map.html', [
+            'controller_name' => 'IndexController',
+        ]);
+    }
+
 }
