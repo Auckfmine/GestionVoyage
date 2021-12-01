@@ -4,11 +4,15 @@ namespace App\Entity;
 
 use App\Repository\VoyageRepository;
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+
+
 /**
  * @ORM\Entity(repositoryClass=VoyageRepository::class)
+ *
  * @UniqueEntity(
  *     fields={"ref_voyage"},
  *     message="ref_voyage already exist !"

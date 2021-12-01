@@ -8,7 +8,10 @@ use App\Repository\VoyageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\HubInterface;
+use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/voyage")
@@ -20,7 +23,7 @@ class VoyageController extends AbstractController
      */
     public function index(VoyageRepository $voyageRepository): Response
     {
-        return $this->render('voyage/detailVoyage.html.twig.twig', [
+        return $this->render('voyage/index.html.twig', [
             'voyages' => $voyageRepository->findAll(),
         ]);
     }
@@ -123,4 +126,7 @@ class VoyageController extends AbstractController
 
         return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
 }
