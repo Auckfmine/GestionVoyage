@@ -17,71 +17,8 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/login", name="login")
-     */
-    public function login(Request $request):Response
-    {
-        $user=new User();
-        $user->setBirthday(new \DateTime());
-        $form=$this->createFormBuilder($user)
-            ->add('username',TextType::class)
-            ->add('password', PasswordType::class)
-            ->getForm();
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $pwd=$user->getPassword();
-            $username=$user->getUsername();
-            $repository =$this->getDoctrine()->getRepository(User::class);
-            $user1=$repository->findOneBy(array('username'=>$username,'password'=>$pwd));
-            if($user1){
-                if($user1->getRole()=="CLIENT"){
-                    return $this->redirect('/');
-                }
-                else{
-                    return $this->redirect('dashboard');
-                }
 
-            }
 
-        }
-        return $this->render('user/login.html.twig',[
-            'user'=>$user,
-            'form'=>$form->createView(),
-        ]);
-    }
-    /**
-     * @Route("/signup", name="signup")
-     */
-    public function signup(Request $request):Response
-    {
-        $user=new User();
-        $user->setCreatedDateUser(new \DateTime());
-        $user->setLastUpdatedUser(new \DateTime());
-        $user->setRole("CLIENT");
-        $form=$this->createFormBuilder($user)
-            ->add('first_name')
-            ->add('last_name')
-            ->add('email')
-            ->add('number')
-            ->add('username')
-            ->add('password',PasswordType::class)
-            ->add('birthday',DateType::class)
-            ->add('signup',SubmitType::class)
-            ->getForm();
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $entityManager=$this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-            return $this->redirect('/');
-
-        }
-        return $this->render('user/signup.html.twig',[
-
-            'form_user'=>$form->createView(),
-        ]);
-    }
     /**
      * @Route("/user", name="user")
      */

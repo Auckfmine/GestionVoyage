@@ -32,8 +32,12 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey }}
+                </div>
+            {% endif %}
             <form class="login100-form validate-form flex-sb flex-w" action="{{ path('login') }}" method="POST">
-                {{ form_row(form._token) }}
 					<span class="login100-form-title p-b-53">
 						Sign In With
 					</span>
@@ -53,7 +57,10 @@
 							Username
 						</span>
                 </div>
-                <div class="wrap-input100 validattr': {'class': 'input100'} }) }}
+                <div class="wrap-input100 validate-input" data-validate = "Username is required">
+
+                    <!-- {d{ form_widget(form.username,{ 'attr': {'class': 'input100'} }) }} -->
+                    <input type="text" id="username" name="_username" class="input100" value="{{ last_username }}">
 
                     <span class="focus-input100"></span>
                 </div>
@@ -68,7 +75,8 @@
                     </a>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                    {{ form_widget(form.password,{ 'attr': {'class': 'input100'} }) }}
+                    <!--{d{ form_widget(form.password,{ 'attr': {'class': 'input100'} }) }}-->
+                    <input type="password" id="password" name="_password" class="input100">
                     <span class="focus-input100"></span>
                 </div>
 
@@ -89,8 +97,7 @@
                 </div>
 
             </form>
-        </div>ate-input" data-validate = "Username is required">
-{{ form_widget(form.username,{ '
+        </div>
     </div>
 </div>
 

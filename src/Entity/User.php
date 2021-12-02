@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -223,6 +223,25 @@ class User
 
         return $this;
     }
+
+
+    public function getRoles()
+    {
+        return array('CLIENT', 'ADMIN','RESPONSABLE_ABONNEMENT','RESPONSABLE_RECLAMATION','RESPONSABLE_MDT','RESPONSABLE_VOYAGE','RESPONSABLE_RESERVATION');
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+
+    }
+
+
+
 
 
 }
