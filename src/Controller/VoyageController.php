@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\api\MailerApi;
+use App\api\TwilioApi;
 use App\Entity\Voyage;
 use App\Form\VoyageType;
 use App\Repository\VoyageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,7 +67,7 @@ class VoyageController extends AbstractController
     /**
      * @Route("/new", name="voyage_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(MailerInterface $mailer,Request $request): Response
     {
         $voyage = new Voyage();
         $form = $this->createForm(VoyageType::class, $voyage);
@@ -73,6 +77,11 @@ class VoyageController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($voyage);
             $entityManager->flush();
+
+            $email = new MailerApi();
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
+            $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
+            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
 
             return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -96,14 +105,17 @@ class VoyageController extends AbstractController
     /**
      * @Route("/{id}/edit", name="voyage_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Voyage $voyage): Response
+    public function edit(MailerInterface $mailer,Request $request, Voyage $voyage): Response
     {
         $form = $this->createForm(VoyageType::class, $voyage);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $email = new MailerApi();
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
+            $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
+            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
             return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -115,13 +127,18 @@ class VoyageController extends AbstractController
 
     /**
      * @Route("/{id}", name="voyage_delete", methods={"POST"})
+     * @throws TransportExceptionInterface
      */
-    public function delete(Request $request, Voyage $voyage): Response
+    public function delete(MailerInterface $mailer,Request $request, Voyage $voyage): Response
     {
         if ($this->isCsrfTokenValid('delete'.$voyage->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($voyage);
             $entityManager->flush();
+            $email = new MailerApi();
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
+            $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
+            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
         }
 
         return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);

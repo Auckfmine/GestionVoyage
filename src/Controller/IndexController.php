@@ -21,7 +21,7 @@ class IndexController extends AbstractController
     public function home(MailerInterface $mailer): Response
     {
         $email = new MailerApi();
-        $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','6c919d52d4ce5021a1a8a2487ed0e5f6','+14704444081');
+        $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
         $twilio->sendSMS('+21625892319','hello from twilio');
         $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email','hello from Mailer to amine ');
         return $this->render('/demo/index.html.twig', [
