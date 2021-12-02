@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from thevectorlab.net/codelab/index.html.twig by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 23:41:10 GMT -->
+<!-- Mirrored from thevectorlab.net/codelab/detailVoyage.html.twig.twig.twig by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 23:41:10 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -12,41 +12,41 @@
     <link rel="icon" type="image/png" href={{ asset('assets/img/favicon.html') }}>
 
     <title>Home</title>
+    <!--web fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--bootstrap styles-->
+    <link href={{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
+
+    <!--icon font-->
+    <link href={{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }} rel="stylesheet">
+    <link href={{ asset('assets/vendor/dashlab-icon/dashlab-icon.css') }} rel="stylesheet">
+    <link href={{ asset('assets/vendor/simple-line-icons/css/simple-line-icons.css') }} rel="stylesheet">
+    <link href={{ asset('assets/vendor/themify-icons/css/themify-icons.css') }} rel="stylesheet">
+    <link href={{ asset('assets/vendor/weather-icons/css/weather-icons.min.css') }} rel="stylesheet">
+
+    <!--jquery ui-->
+    <link href={{ asset('assets/vendor/jquery-ui/jquery-ui.min.css') }} rel="stylesheet">
+
+    <!--iCheck-->
+    <link href={{ asset('assets/vendor/icheck/skins/all.css') }} rel="stylesheet">
+
+    <!--custom styles-->
+    <link href={{ asset('assets/css/main.css') }} rel="stylesheet">
     {% block stylesheets %}
-        <!--web fonts-->
-        <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!--bootstrap styles-->
-        <link href={{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
 
-        <!--icon font-->
-        <link href={{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }} rel="stylesheet">
-        <link href={{ asset('assets/vendor/dashlab-icon/dashlab-icon.css') }} rel="stylesheet">
-        <link href={{ asset('assets/vendor/simple-line-icons/css/simple-line-icons.css') }} rel="stylesheet">
-        <link href={{ asset('assets/vendor/themify-icons/css/themify-icons.css') }} rel="stylesheet">
-        <link href={{ asset('assets/vendor/weather-icons/css/weather-icons.min.css') }} rel="stylesheet">
-
-        <!--jquery ui-->
-        <link href={{ asset('assets/vendor/jquery-ui/jquery-ui.min.css') }} rel="stylesheet">
-
-        <!--iCheck-->
-        <link href={{ asset('assets/vendor/icheck/skins/all.css') }} rel="stylesheet">
-
-        <!--custom styles-->
-        <link href={{ asset('assets/css/main.css') }} rel="stylesheet">
     {% endblock %}
 
-    {% block javascripts %}
+
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
     <script src={{ asset('assets/vendor/html5shiv.js') }}></script>
     <script src={{ asset('assets/vendor/respond.min.js') }}></script>
 
 
-
     <![endif]-->
-    {% endblock %}
+
 </head>
 
 <body class="left-sidebar-fixed">
@@ -61,7 +61,9 @@
 
         <!--brand start-->
         <div class="navbar-brand pos-fixed">
-            <a class="" href="dashboard/thevectorlab.net/codelab/index.html.twig">
+
+            <a class="" href={{ path('dash_board') }}>
+
                 <img src={{ asset('assets/img/logo.png') }} srcset={{ asset('assets/img/logo.png') }}  alt="CodeLab">
             </a>
         </div>
@@ -250,12 +252,14 @@
                             <span>Utilisateur</span>
                         </a>
                         <ul class="sub">
+
                             <li class="sub-menu">
                                 <a  href={{ path('user') }}>Liste Utilisateurs</a>
                             </li>
                             <li class="sub-menu">
                                 <a  href={{ path('add_user') }}>Ajouter Utilisateur</a>
                             </li>
+
 
                         </ul>
                     </li>
@@ -317,24 +321,24 @@
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class=" ti-pie-chart"></i>
-                            <span>Charts</span>
+                            <span>Moyen De Transport</span>
                         </a>
                         <ul class="sub">
-                            <li><a  href="dashboard/thevectorlab.net/codelab/chartjs.html">Chartjs</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/echarts.html">eCharts</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/amcharts.html">amCharts</a></li>
+                            <li><a  href={{ path('moyen_de_transport_index') }}>List Mt</a></li>
+                            <li><a  href={{ path('moyen_de_transport_new') }}>Ajouter Moyen Transport</a></li>
+
                         </ul>
                     </li>
 
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="icon-calendar"></i>
-                            <span>Calendar </span>
+                            <span>Depo </span>
                         </a>
                         <ul class="sub">
-                            <li><a  href="dashboard/thevectorlab.net/codelab/calendar-basic.html">Basic Calendar</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/calendar-external-events.html">External Events Calendar</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/calendar-list.html">List Calendar</a></li>
+                            <li><a  href={{ path('depot_index') }}>Liste Depos</a></li>
+                            <li><a  href={{ path('depot_new') }}>Ajouter Depo</a></li>
+
                         </ul>
                     </li>
 
@@ -368,7 +372,7 @@
                             <span>BS Elements</span>
                         </a>
                         <ul class="sub">
-                            <li><a  href="dashboard/thevectorlab.net/codelab/alert.html">Alerts</a></li>
+                            <li><a  href={{ path('voyage_statistiques') }}>Alerts</a></li>
                             <li><a  href="dashboard/thevectorlab.net/codelab/buttons.html">Buttons</a></li>
                             <li><a  href="dashboard/thevectorlab.net/codelab/dropdown.html">Dropdowns</a></li>
                             <li><a  href="dashboard/thevectorlab.net/codelab/modals.html">Modals</a></li>
@@ -453,7 +457,7 @@
                     </li>
 
                     <li>
-                        <a href={{ asset('email-template/index.html') }} target="_blank">
+                        <a href={{ asset('email-template/detailVoyage.html.twig.twig') }} target="_blank">
                             <i class="fa fa-circle-o text-success"></i>
                             <span>Email Template</span>
                         </a>
@@ -472,15 +476,16 @@
 
     <!--main content wrapper-->
     <div class="content-wrapper">
-        <div class="container text-center">
+        <div class="container text-center" style="width:600px !important; height: 480px !important;">
             {% block body %}
             {% endblock %}
         </div>
 
         <!--/member performance & support ticket-->
     </div>
+
     <!--footer-->
-    
+
     <!--/footer-->
 </div>
 <!--main content wrapper end-->
@@ -674,8 +679,10 @@
     <script src={{ asset('assets/js/scripts.js') }}></script>
 
     {% endblock %}
+{% block javascripts %}
+{% endblock %}
 </body>
 
-<!-- Mirrored from thevectorlab.net/codelab/index.html.twig by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 23:41:40 GMT -->
+<!-- Mirrored from thevectorlab.net/codelab/detailVoyage.html.twig.twig.twig by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 23:41:40 GMT -->
 </html>
 

@@ -1,0 +1,143 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %} Statistiques{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+{% block body %}
+    <div class="container" style="display: flex;flex-direction: column ;justify-content: space-between">
+        <h1>Statistiques Pour Le Module Voyage</h1>
+        <canvas id="voyages" width="100" height="100" style="margin-top :50px !important;"></canvas>
+        <canvas id="stations" width="100" height="100" style="margin-top :50px !important;"></canvas>
+        <canvas id="vehicules" width="100" height="100" style="margin-top :50px !important;"></canvas>
+    </div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
+<script>
+
+    const dates = {{ voyageDateDepart|raw }}
+    const newDates = [];
+    dates.forEach(date=>{
+        newDates.push(date.date.split(" ")[0]);
+    })
+    const finalDates = [...new Set(newDates)]
+    const finalMt = [...new Set({{ voyageMt|raw }})]
+    //set the color of bars dynamically
+    let backGroundColor = [];
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    //we need to get the exact number of dates
+    finalDates.forEach(date=>{
+        //set random rgb values for each date
+        backGroundColor.push(`rgba(${getRandomInt(1,256)}, ${getRandomInt(1,99)}, ${getRandomInt(1,256)}, 0.2)`)
+    })
+    let secondChartBackGroundColor = []
+    let thirdChartBackGroundColor = []
+
+    let NombreStations = {{ voyageStation|raw }} ;
+    NombreStations.forEach(station=>{
+        secondChartBackGroundColor.push(`rgba(${getRandomInt(1,256)}, ${getRandomInt(1,99)}, ${getRandomInt(1,256)}, 0.2)`)
+    })
+    let NombreMt = {{ voyageMt|raw }}
+    NombreMt.forEach(mt=>{
+        thirdChartBackGroundColor.push(`rgba(${getRandomInt(1,256)}, ${getRandomInt(1,99)}, ${getRandomInt(1,256)}, 0.2)`)
+    })
+    const ctx = document.querySelector("#voyages").getContext('2d');
+    const ctx2 = document.querySelector("#stations").getContext('2d');
+    const ctx3 = document.querySelector("#vehicules").getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: finalDates,
+            datasets: [{
+                label: 'Nombre de voyages complets',
+                data: {{ finalDates|raw }},
+                backgroundColor: backGroundColor,
+                borderColor: backGroundColor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+
+                    beginAtZero: true
+                }
+            },
+
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Nombre de voyage par Date'
+                    }
+                }
+
+        }
+    });
+    const stationChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: {{ voyageStation|raw }},
+            datasets: [{
+                label: 'Nombre de voyages par station',
+                data: {{ finalStations|raw }},
+                backgroundColor: secondChartBackGroundColor,
+                borderColor: secondChartBackGroundColor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+
+                    beginAtZero: true
+                }
+            },
+
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Nombre de voyage par Station'
+                }
+            }
+
+        }
+    });
+    const MtChart = new Chart(ctx3, {
+        type: 'pie',
+        data: {
+            labels: finalMt,
+            datasets: [{
+                label: 'Nombre de voyages complets',
+                data: {{ finalMt|raw }},
+                backgroundColor: thirdChartBackGroundColor,
+                borderColor: thirdChartBackGroundColor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+
+                    beginAtZero: true
+                }
+            },
+
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Nombre de voyage par Type De Moyen De Transport'
+                }
+            }
+
+        }
+    });
+</script>
+{% endblock %}

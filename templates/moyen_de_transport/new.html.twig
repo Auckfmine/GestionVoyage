@@ -1,0 +1,11 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}New MoyenDeTransport{% endblock %}
+
+{% block body %}
+    <h1>Create new MoyenDeTransport</h1>
+
+    {{ include('moyen_de_transport/_form.html.twig') }}
+
+    <a href="{{ path('moyen_de_transport_index') }}">back to list</a>
+{% endblock %}

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Voyage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 /**
  * @method Voyage|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,19 +23,49 @@ class VoyageRepository extends ServiceEntityRepository
     // /**
     //  * @return Voyage[] Returns an array of Voyage objects
     //  */
-    /*
+
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
+        $result =  $this->createQueryBuilder('voyage')
+            ->andWhere('voyage.date_depart = :val')
             ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('voyage.id', 'ASC')
+            ->setMaxResults(100)
             ->getQuery()
             ->getResult()
         ;
+
+
+
+
+
+
+        return $result;
     }
-    */
+
+    public function findVoyageByStation($term){
+        return $this
+
+            ->createQueryBuilder('voyage')
+            ->join('voyage.station_depart', 'station')
+            ->where('station.nom_station = :val')
+            ->setParameter('val',$term)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findVoyageByMoyenDeTransport($term){
+        return $this
+
+            ->createQueryBuilder('voyage')
+            ->join('voyage.MoyenDeTransport', 'mt')
+            ->where('mt.Type = :val')
+            ->setParameter('val',$term)
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Voyage

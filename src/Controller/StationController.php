@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\api\MailerApi;
+use App\api\TwilioApi;
 use App\Entity\Station;
 use App\Form\StationType;
 use App\Repository\StationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -27,8 +31,9 @@ class StationController extends AbstractController
 
     /**
      * @Route("/new", name="station_new", methods={"GET","POST"})
+     * @throws TransportExceptionInterface
      */
-    public function new(Request $request): Response
+    public function new(MailerInterface $mailer,Request $request): Response
     {
         $station = new Station();
         $form = $this->createForm(StationType::class, $station);
@@ -38,6 +43,10 @@ class StationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($station);
             $entityManager->flush();
+            $email = new MailerApi();
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
+            $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien ajoutée ");
+            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien ajoutée ");
 
             return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -60,14 +69,19 @@ class StationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="station_edit", methods={"GET","POST"})
+     * @throws TransportExceptionInterface
      */
-    public function edit(Request $request, Station $station): Response
+    public function edit(MailerInterface $mailer,Request $request, Station $station): Response
     {
         $form = $this->createForm(StationType::class, $station);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $email = new MailerApi();
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
+            $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien modifiée ");
+            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien modifiée ");
 
             return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -80,13 +94,18 @@ class StationController extends AbstractController
 
     /**
      * @Route("/{id}", name="station_delete", methods={"POST"})
+     * @throws TransportExceptionInterface
      */
-    public function delete(Request $request, Station $station): Response
+    public function delete(MailerInterface $mailer,Request $request, Station $station): Response
     {
         if ($this->isCsrfTokenValid('delete'.$station->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($station);
             $entityManager->flush();
+            $email = new MailerApi();
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
+            $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien supprimée ");
+            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien supprimée ");
         }
 
         return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);
