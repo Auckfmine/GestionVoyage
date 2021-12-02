@@ -27,7 +27,7 @@ class VoyageRepository extends ServiceEntityRepository
     public function findByExampleField($value)
     {
         $result =  $this->createQueryBuilder('voyage')
-            ->andWhere('voyage.station_depart = :val')
+            ->andWhere('voyage.date_depart = :val')
             ->setParameter('val', $value)
             ->orderBy('voyage.id', 'ASC')
             ->setMaxResults(100)
@@ -37,7 +37,33 @@ class VoyageRepository extends ServiceEntityRepository
 
 
 
+
+
+
         return $result;
+    }
+
+    public function findVoyageByStation($term){
+        return $this
+
+            ->createQueryBuilder('voyage')
+            ->join('voyage.station_depart', 'station')
+            ->where('station.nom_station = :val')
+            ->setParameter('val',$term)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findVoyageByMoyenDeTransport($term){
+        return $this
+
+            ->createQueryBuilder('voyage')
+            ->join('voyage.MoyenDeTransport', 'mt')
+            ->where('mt.Type = :val')
+            ->setParameter('val',$term)
+            ->getQuery()
+            ->getResult();
     }
 
 
