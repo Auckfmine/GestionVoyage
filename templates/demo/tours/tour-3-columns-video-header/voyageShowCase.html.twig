@@ -17,6 +17,7 @@
         window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/themes.themegoods.com\/grandtour\/demo\/wp-includes\/js\/wp-emoji-release.min.js"}};
         !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style type="text/css">
         img.wp-smiley,
         img.emoji {
@@ -489,15 +490,16 @@
 
     </div>
 
+
+
     <!-- Begin content -->
     <div id="page_content_wrapper" class="hasbg ">
-        <form id="tour_search_form" name="tour_search_form" method="get"
-              action="https://themes.themegoods.com/grandtour/demo/tours/tour-3-columns-video-header/">
+        <form id="search_form" name="search_form" method="get">
             <div class="tour_search_wrapper">
                 <div class="one_fourth themeborder">
-                    <input id="keyword" name="keyword" type="text" autocomplete="off" placeholder="Destination, city"/>
+                    <input id="search"  type="text" autocomplete="off" placeholder="Nom De Station"/>
                     <span class="ti-search"></span>
-                    <div id="autocomplete" class="autocomplete" data-mousedown="false"></div>
+
                 </div>
                 <div class="one_fourth themeborder">
                     <select id="month" name="month">
@@ -519,28 +521,65 @@
                 </div>
                 <div class="one_fourth themeborder">
                     <select id="sort_by" name="sort_by">
-                        <option value="date">Sort By Date</option>
-                        <option value="price_low">Price Low to High</option>
-                        <option value="price_high">Price High to Low</option>
-                        <option value="name">Sort By Name</option>
-                        <option value="popular">Sort By Popularity</option>
-                        <option value="review">Sort By Review Score</option>
+                        <option value="date">Trier Par Date De Voyage</option>
+
                     </select>
                     <span class="ti-exchange-vertical"></span>
                 </div>
                 <div class="one_fourth last themeborder">
-                    <input id="tour_search_btn" type="submit" class="button" value="Search"/>
+                    <input  type="submit" class="button" value="Rechercher" onclick="recherche_ajax(event)"/>
+
                 </div>
 
+
+                <script>
+                    function recherche_ajax(e) {
+
+                       /* const type = document.getElementById('type').value
+                        const prix = document.getElementById('prix').value*/
+                        const req = document.getElementById('search').value
+
+                        console.log(req);
+
+                        $.ajax({
+                            url: '/rechercher',
+                            type: 'POST',
+                            data: {
+
+                                req
+                            },
+                            dataType: 'json',
+                            async: true,
+
+                            success: function (data, status) {
+                                console.log(data)
+                                $('#container').empty()
+                                for (i = 0; i < data.length; i++) {
+                                    const item = $(
+                                        `<div class="element grid classic3_cols animated2"><div class="one_third gallery3 grid static filterable portfolio_type themeborder"data-id="post-2"style="background-image:url(https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/pexels-photo-211051-700x466.jpeg);"><a id="gotTo" class="tour_image"href="#"></a><div class="portfolio_info_wrapper"><div class="tour_price ">12,5 dt</div><h4 id="RefVoyage"></h4><div class="tour_attribute_wrapper"><div class="tour_attribute_rating"><div class="br-theme-fontawesome-stars-o"><div class="br-widget"><a href="javascript:;" class="br-selected"></a><ahref="javascript:;" class="br-selected"></a><ahref="javascript:;" class="br-selected"></a><ahref="javascript:;" class="br-selected"></a><ahref="javascript:;"></a></div></div><div class="tour_attribute_rating_count">4&nbsp;reviews</div></div><div class="tour_attribute_days"><span class="ti-time"></span>30&nbsp;minutes</div></div><br class="clear"/></div></div></div>`
+                                    )
+                                    $('#RefVoyage', item).html(data[i].ref_voyage)
+                                    $('#gotTo', item).attr('href','/voyage/voyage-detail/'+data[i].id)
+
+                                    $('#container').append(item)
+                                }
+                            },
+                            error: function () {
+                                console.log(err)
+                                alert('Ajax request failed')
+                            },
+                        })
+                    }
+                </script>
                 <br class="clear"/>
                 <div class="tour_advance_search_wrapper">
                     <div class="one_fourth themeborder">
                         <select id="tourcat" name="tourcat">
-                            <option value="">All Categories</option>
-                            <option value="mountain">Mountain</option>
-                            <option value="rural">Rural</option>
-                            <option value="snow-ice">Snow &amp; Ice</option>
-                            <option value="wildlife">Wildlife</option>
+                            <option value="">Type De Vehicule</option>
+                            <option value="TRAIN">Train</option>
+                            <option value="BUS">Bus</option>
+                            <option value="METRO">Metro</option>
+
                         </select><span class="ti-angle-down"></span>
                     </div>
 
@@ -586,49 +625,15 @@
 
                     <div class="standard_wrapper">
 
+
                         <div id="portfolio_filter_wrapper"
                              class="gallery grid three_cols portfolio-content section content clearfix"
                              data-columns="3">
+
+                            <div id="container"></div>
                         {% for voyage in voyages %}
-                            <div class="element grid classic3_cols animated2">
-
-                                <div class="one_third gallery3 grid static filterable portfolio_type themeborder"
-                                     data-id="post-2"
-                                     style="background-image:url(https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/pexels-photo-211051-700x466.jpeg);">
-                                    <a class="tour_image"
-                                       href={{ path('voyage_detail',{id:voyage.id}) }}></a>
 
 
-                                    <div class="portfolio_info_wrapper">
-                                        <div class="tour_price ">
-                                            12,5 dt
-                                        </div>
-                                        <h4>{{ voyage.getStationDepart() }} - {{ voyage.getStationArrive() }}</h4>
-                                        <div class="tour_attribute_wrapper">
-                                            <div class="tour_attribute_rating">
-                                                <div class="br-theme-fontawesome-stars-o">
-                                                    <div class="br-widget">
-                                                        <a href="javascript:;" class="br-selected"></a><a
-                                                                href="javascript:;" class="br-selected"></a><a
-                                                                href="javascript:;" class="br-selected"></a><a
-                                                                href="javascript:;" class="br-selected"></a><a
-                                                                href="javascript:;"></a></div>
-                                                </div>
-                                                <div class="tour_attribute_rating_count">
-                                                    4&nbsp;
-                                                    reviews
-                                                </div>
-                                            </div>
-
-                                            <div class="tour_attribute_days">
-                                                <span class="ti-time"></span>
-                                                30&nbsp;minutes
-                                            </div>
-                                        </div>
-                                        <br class="clear"/>
-                                    </div>
-                                </div>
-                            </div>
                             {% endfor %}
 
 
@@ -1025,6 +1030,7 @@
         });
     });
 </script>
+
 <script type='text/javascript'
         src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/plugins/booked/assets/js/spin.min.js'
         id='booked-spin-js-js'></script>
@@ -1079,6 +1085,19 @@
         "cart_redirect_after_add": "no"
     };
     /* ]]> */
+</script>
+<script>
+
+        $('#search').on('input',function(e){
+            setTimeout(()=>{
+                console.log("changed");
+                recherche_ajax(e);
+            },1000);
+
+
+    });
+
+
 </script>
 <script type='text/javascript'
         src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js'
@@ -1158,15 +1177,11 @@
 <script type='text/javascript'
         src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/themes/grandtour/js/jarallax-video.js'
         id='jarallax-video-js'></script>
-<script type='text/javascript'
-        src='https://themes.themegoods.com/grandtour/demo/wp-admin/admin-ajax.php?action=grandtour_ajax_search&#038;id=keyword&#038;form=tour_search_form&#038;result=autocomplete'
-        id='script-ajax-search-js'></script>
+
 <script type='text/javascript'
         src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/themes/grandtour/js/jquery.cookie.js'
         id='grandtour-jquery-cookie-js'></script>
-<script type='text/javascript'
-        src='https://themes.themegoods.com/grandtour/demo/wp-admin/admin-ajax.php?action=grandtour_script_demo'
-        id='grandtour-script-demo-js'></script>
+
 </body>
 </html>
 <!-- End content -->

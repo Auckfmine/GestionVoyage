@@ -48,8 +48,8 @@ class VoyageRepository extends ServiceEntityRepository
 
             ->createQueryBuilder('voyage')
             ->join('voyage.station_depart', 'station')
-            ->where('station.nom_station = :val')
-            ->setParameter('val',$term)
+            ->where('station.nom_station like :val')
+            ->setParameter('val', '%'.$term.'%')
             ->getQuery()
             ->getResult();
     }

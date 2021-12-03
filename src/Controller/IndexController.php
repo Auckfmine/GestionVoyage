@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\api\MailerApi;
 use App\api\TwilioApi;
+use App\Repository\VoyageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -18,12 +21,9 @@ class IndexController extends AbstractController
      * @Route("/", name="index")
      * @throws TransportExceptionInterface
      */
-    public function home(MailerInterface $mailer): Response
+    public function home(): Response
     {
-        $email = new MailerApi();
-        $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
-        $twilio->sendSMS('+21625892319','hello from twilio');
-        $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email','hello from Mailer to amine ');
+
         return $this->render('/demo/index.html.twig', [
             'controller_name' => 'IndexController',
         ]);
@@ -41,6 +41,55 @@ class IndexController extends AbstractController
         return $this->render('map.html', [
             'controller_name' => 'IndexController',
         ]);
+    }
+
+
+    /**
+     * @Route("/rechercher", name="rechercher")
+     */
+    public function rechercher(Request $request, VoyageRepository $voyageRepository)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $station = $request->get('station');
+            $date = $request->get('date');
+            $mt = $request->get('mt');
+            $req = trim($request->get('req'));
+            $res = array();
+            if ($req != '') {
+                $res = $voyageRepository->findVoyageByStation($req);
+            } else {
+                $res = $voyageRepository->findAll();
+
+            }
+
+            $idx = 0;
+            if ($station != '') {
+                foreach ($res as $item) {
+                    if (strtolower($item->getStationDepart()) != $station) {
+                        unset($res[$idx]);
+                    }
+                    $idx++;
+                }
+            }
+
+            $jsonResponse = array();
+            $idx = 0;
+            foreach ($res as $item) {
+                $temp = array(
+                    'id' => $item->getId(),
+                    'ref_voyage' => $item->getRefVoyage(),
+                    'station_depart' => $item->getStationDepart()->getNomStation(),
+                    'Station_arrive' => $item->getStationArrive()->getNomStation(),
+                    'MoyenDeTransport' => $item->getMoyenDeTransport()->getType(),
+                    'date_depart' => $item->getDateDepart()->format('Y-m-d H:i:s'),
+                    'date_arrive' => $item->getDateArrive()->format('Y-m-d H:i:s'),
+                );
+                $jsonResponse[$idx++] = $temp;
+            }
+            return new JsonResponse($jsonResponse);
+        } else {
+            return $this->redirectToRoute("list_voyages");
+        }
     }
 
 }
