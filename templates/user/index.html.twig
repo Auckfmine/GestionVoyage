@@ -1,12 +1,10 @@
 {% extends 'dashboard.html.twig' %}
 
-
 {% block body %}
-    <form class="navbar-form">
-        <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+        <input id="search" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
         <a class="btn btn-primary" href="{{path('imprimer_index')}}" > Imprimer </a>
-    </form>
-                <table class="table">
+    <script src="{{ asset('Signup/vendor/jquery/jquery.min.js') }}"></script>
+                <table id="tableac" class="table">
                     <thead>
                         <tr>
 
@@ -52,5 +50,32 @@
                 </table>
     <a class="btn btn-warning" href="{{ path('add_user') }}">Create new</a>
 
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
 
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}
