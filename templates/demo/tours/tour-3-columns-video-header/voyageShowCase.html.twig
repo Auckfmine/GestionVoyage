@@ -537,7 +537,7 @@
 
                        /* const type = document.getElementById('type').value
                         const prix = document.getElementById('prix').value*/
-                        const req = document.getElementById('search').value
+                        const req = e.target.value //document.getElementById('search').value
 
                         console.log(req);
 
@@ -558,7 +558,7 @@
                                     const item = $(
                                         `<div class="element grid classic3_cols animated2"><div class="one_third gallery3 grid static filterable portfolio_type themeborder"data-id="post-2"style="background-image:url(https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/pexels-photo-211051-700x466.jpeg);"><a id="gotTo" class="tour_image"href="#"></a><div class="portfolio_info_wrapper"><div class="tour_price ">12,5 dt</div><h4 id="RefVoyage"></h4><div class="tour_attribute_wrapper"><div class="tour_attribute_rating"><div class="br-theme-fontawesome-stars-o"><div class="br-widget"><a href="javascript:;" class="br-selected"></a><ahref="javascript:;" class="br-selected"></a><ahref="javascript:;" class="br-selected"></a><ahref="javascript:;" class="br-selected"></a><ahref="javascript:;"></a></div></div><div class="tour_attribute_rating_count">4&nbsp;reviews</div></div><div class="tour_attribute_days"><span class="ti-time"></span>30&nbsp;minutes</div></div><br class="clear"/></div></div></div>`
                                     )
-                                    $('#RefVoyage', item).html(data[i].ref_voyage)
+                                    $('#RefVoyage', item).html(data[i].station_depart +"-"+data[i].Station_arrive)
                                     $('#gotTo', item).attr('href','/voyage/voyage-detail/'+data[i].id)
 
                                     $('#container').append(item)
@@ -1090,8 +1090,12 @@
 
         $('#search').on('input',function(e){
             setTimeout(()=>{
-                console.log("changed");
-                recherche_ajax(e);
+
+
+                    console.log("changed");
+                    recherche_ajax(e);
+
+
             },1000);
 
 
