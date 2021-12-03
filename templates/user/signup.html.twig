@@ -78,6 +78,24 @@
                         </div>
                     </div>
                 </div>
+                {% set formErrors=form_errors(form_user.captchaCode) %}
+                {% if formErrors|length %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for error in formErrors %}
+                                <li>{{ error.message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <div class="form-row">
+                    <div class="name">{{ form_label(form_user.captchaCode) }}</div>
+                    <div class="value">
+                        <div class="input-group">
+                            {{ form_widget(form_user.captchaCode,{'attr': {'class': 'input--style-5' }}) }}
+                        </div>
+                    </div>
+                </div>
 
 
                 <div>

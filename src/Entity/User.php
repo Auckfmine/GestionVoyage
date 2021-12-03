@@ -79,7 +79,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(name="role", type="string", columnDefinition="enum('CLIENT', 'ADMIN','RESPONSABLE_ABONNEMENT','RESPONSABLE_RECLAMATION','RESPONSABLE_MDT','RESPONSABLE_VOYAGE','RESPONSABLE_RESERVATION')")
+     * @ORM\Column(name="role", type="string", length=32,columnDefinition="enum('CLIENT', 'ADMIN','RESPONSABLE_ABONNEMENT','RESPONSABLE_RECLAMATION','RESPONSABLE_MDT','RESPONSABLE_VOYAGE','RESPONSABLE_RESERVATION')")
      */
     private $role;
 
@@ -98,6 +98,18 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $last_updated_user;
+
+    protected $captchaCode;
+
+    public function getCaptchaCode()
+    {
+        return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+        $this->captchaCode = $captchaCode;
+    }
 
     public function getId(): ?int
     {

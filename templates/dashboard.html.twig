@@ -13,6 +13,7 @@
 
     <title>Home</title>
     <!--web fonts-->
+    <link rel="stylesheet" href="{{ asset('flashy/flashy.css') }}">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -680,7 +681,20 @@
 
     {% endblock %}
 {% block javascripts %}
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="{{ asset('flashy/flashy.js') }}"></script>
 {% endblock %}
+{% for message in app.flashes('mercuryseries_flashy_notification') %}
+    <script id="flashy-template" type="text/template">
+        <div class="flashy flashy--{{ message.type }}">
+            <a class="flashy__body" href="#" target="_blank"></a>
+        </div>
+    </script>
+
+    <script>
+        flashy("{{ message.message }}", "{{ message.link }}");
+    </script>
+{% endfor %}
 </body>
 
 <!-- Mirrored from thevectorlab.net/codelab/detailVoyage.html.twig.twig.twig by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 23:41:40 GMT -->
