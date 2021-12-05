@@ -33,9 +33,7 @@ class MoyenDeTransportType extends AbstractType
             ->add('Date_de_mise_en_circulation')
             ->add('Etat')
 
-            ->add('Accessible_au_handicape',checkboxType::class,[
-                'mapped'=>true,'required'=>false,
-            ])
+            ->add('Accessible_au_handicape')
             ->add('Prix_Achat',MoneyType::class, array(
                 'scale'=>2 ,
                 'currency'=>false,

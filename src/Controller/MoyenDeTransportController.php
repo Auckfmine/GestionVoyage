@@ -133,13 +133,20 @@ class MoyenDeTransportController extends AbstractController
     /**
      * @Route("/{id}/edit", name="moyen_de_transport_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, MoyenDeTransport $moyenDeTransport, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, MoyenDeTransport $moyenDeTransport, EntityManagerInterface $entityManager,MailerInterface $mailer,FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(MoyenDeTransportType::class, $moyenDeTransport);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+
+            $email = new MailerApi();
+            $twilio = new TwilioApi('ACcb016d5d5b4e05ea366d44ec5227e10c','ac4747a918aeb184c86281050488de22','+12565679612');
+            $twilio->sendSMS('+21658932889','Moyen de Transport Modifier avec success');
+            $email->sendEmail( $mailer,'tunisport32@gmail.com','mahdi.homrani@esprit.tn','testing email','Moyen de Transport Modifier avec success');
+            $this->addFlash(
+                'info' ,' Moyen de Transport Modifier avec success !');
 
             return $this->redirectToRoute('moyen_de_transport_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -153,11 +160,18 @@ class MoyenDeTransportController extends AbstractController
     /**
      * @Route("/{id}", name="moyen_de_transport_delete", methods={"POST"})
      */
-    public function delete(Request $request, MoyenDeTransport $moyenDeTransport, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, MoyenDeTransport $moyenDeTransport, EntityManagerInterface $entityManager,MailerInterface $mailer,FlashyNotifier $flashy): Response
     {
         if ($this->isCsrfTokenValid('delete'.$moyenDeTransport->getId(), $request->request->get('_token'))) {
             $entityManager->remove($moyenDeTransport);
             $entityManager->flush();
+
+            $email = new MailerApi();
+            $twilio = new TwilioApi('ACcb016d5d5b4e05ea366d44ec5227e10c','ac4747a918aeb184c86281050488de22','+12565679612');
+            $twilio->sendSMS('+21658932889','Moyen de Transport Supprimer avec success');
+            $email->sendEmail( $mailer,'tunisport32@gmail.com','mahdi.homrani@esprit.tn','testing email','Moyen de Transport Supprimer avec success');
+            $this->addFlash(
+                'info' ,' Moyen de Transport Supprimer avec success !');
         }
 
         return $this->redirectToRoute('moyen_de_transport_index', [], Response::HTTP_SEE_OTHER);
