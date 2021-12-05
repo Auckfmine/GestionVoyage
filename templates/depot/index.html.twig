@@ -3,7 +3,7 @@
 {% block title %}Depot index{% endblock %}
 
 {% block body %}
-    <h1>Depot index</h1>
+    <h1>List des Depots </h1>
 
     <table class="table">
         <thead>
@@ -25,8 +25,8 @@
                 <td>{{ depot.Localisation }}</td>
                 <td>{{ depot.Etat }}</td>
                 <td>
-                    <a href="{{ path('depot_show', {'id': depot.id}) }}">show</a>
-                    <a href="{{ path('depot_edit', {'id': depot.id}) }}">edit</a>
+                    <a class="btn btn-outline-info" href="{{ path('depot_show', {'id': depot.id}) }}">show</a>
+                <a class="btn btn-outline-warning" href="{{ path('depot_edit', {'id': depot.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('depot_new') }}">Create new</a>
+    <a class="btn btn-secondary" href="{{ path('depot_new') }}">Create new</a>
 {% endblock %}

@@ -3,64 +3,65 @@
 {% block title %}MoyenDeTransport{% endblock %}
 
 {% block body %}
+
     <h1>MoyenDeTransport</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ moyen_de_transport.id }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ moyen_de_transport.Type }}</td>
-            </tr>
-            <tr>
-                <th>Num_ligne</th>
-                <td>{{ moyen_de_transport.NumLigne }}</td>
-            </tr>
-            <tr>
-                <th>Date_de_mise_en_circulations</th>
-                <td>{{ moyen_de_transport.DateDeMiseEnCirculations ? moyen_de_transport.DateDeMiseEnCirculations|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ moyen_de_transport.Etat }}</td>
-            </tr>
-            <tr>
-                <th>Accessible_au_handicape</th>
-                <td>{{ moyen_de_transport.AccessibleAuHandicape }}</td>
-            </tr>
-            <tr>
-                <th>Prix_Achat</th>
-                <td>{{ moyen_de_transport.PrixAchat }}</td>
-            </tr>
-            <tr>
-                <th>Poids</th>
-                <td>{{ moyen_de_transport.Poids }}</td>
-            </tr>
-            <tr>
-                <th>Longueur</th>
-                <td>{{ moyen_de_transport.Longueur }}</td>
-            </tr>
-            <tr>
-                <th>Largeur</th>
-                <td>{{ moyen_de_transport.Largeur }}</td>
-            </tr>
-            <tr>
-                <th>Energie</th>
-                <td>{{ moyen_de_transport.Energie }}</td>
-            </tr>
-            <tr>
-                <th>Nombre_de_place</th>
-                <td>{{ moyen_de_transport.NombreDePlace }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ moyen_de_transport.id }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ moyen_de_transport.Type }}</td>
+        </tr>
+        <tr>
+            <th>Num_ligne</th>
+            <td>{{ moyen_de_transport.NumLigne }}</td>
+        </tr>
+        <tr>
+            <th>Date_de_mise_en_circulations</th>
+            <td>{{ moyen_de_transport.DateDeMiseEnCirculation ? moyen_de_transport.DateDeMiseEnCirculation|date('Y-m-d') : ''  }}</td>
+        </tr>
+        <tr>
+            <th>Etat</th>
+            <td>{{ moyen_de_transport.Etat }}</td>
+        </tr>
+        <tr>
+            <th>Accessible_au_handicape</th>
+            <td>{{ moyen_de_transport.AccessibleAuHandicape }}</td>
+        </tr>
+        <tr>
+            <th>Prix_Achat</th>
+            <td>{{ moyen_de_transport.PrixAchat }}</td>
+        </tr>
+        <tr>
+            <th>Poids</th>
+            <td>{{ moyen_de_transport.Poids }}</td>
+        </tr>
+        <tr>
+            <th>Longueur</th>
+            <td>{{ moyen_de_transport.Longueur }}</td>
+        </tr>
+        <tr>
+            <th>Largeur</th>
+            <td>{{ moyen_de_transport.Largeur }}</td>
+        </tr>
+        <tr>
+            <th>Energie</th>
+            <td>{{ moyen_de_transport.Energie }}</td>
+        </tr>
+        <tr>
+            <th>Nombre_de_place</th>
+            <td>{{ moyen_de_transport.NombreDePlace }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('moyen_de_transport_index') }}">back to list</a>
+    <a class="btn btn-outline-primary" href="{{ path('moyen_de_transport_index') }}">back to list</a>
 
-    <a href="{{ path('moyen_de_transport_edit', {'id': moyen_de_transport.id}) }}">edit</a>
+    <a class="btn btn-outline-warning" href="{{ path('moyen_de_transport_edit', {'id': moyen_de_transport.id}) }}">edit</a>
 
     {{ include('moyen_de_transport/_delete_form.html.twig') }}
 {% endblock %}

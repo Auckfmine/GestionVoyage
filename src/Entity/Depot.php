@@ -6,8 +6,6 @@ use App\Repository\DepotRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=DepotRepository::class)
@@ -22,37 +20,33 @@ class Depot
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message="Capacité is required")
+     * @ORM\Column(type="string", length=255)
      */
     private $Capacite;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Catégorie is required")
      */
     private $Categorie;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Localisation is required")
      */
     private $Localisation;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Etat is required")
      */
     private $Etat;
 
     /**
      * @ORM\OneToMany(targetEntity=MoyenDeTransport::class, mappedBy="depot")
      */
-    private $MoyenDeTransport;
+    private $moyenDeTransport;
 
     public function __construct()
     {
-        $this->MoyenDeTransport = new ArrayCollection();
+        $this->moyenDeTransport = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -60,12 +54,12 @@ class Depot
         return $this->id;
     }
 
-    public function getCapacite(): ?int
+    public function getCapacite(): ?string
     {
         return $this->Capacite;
     }
 
-    public function setCapacite(int $Capacite): self
+    public function setCapacite(string $Capacite): self
     {
         $this->Capacite = $Capacite;
 
@@ -113,13 +107,13 @@ class Depot
      */
     public function getMoyenDeTransport(): Collection
     {
-        return $this->MoyenDeTransport;
+        return $this->moyenDeTransport;
     }
 
     public function addMoyenDeTransport(MoyenDeTransport $moyenDeTransport): self
     {
-        if (!$this->MoyenDETransport->contains($moyenDeTransport)) {
-            $this->MoyenDeTransport[] = $moyenDeTransport;
+        if (!$this->moyenDeTransport->contains($moyenDeTransport)) {
+            $this->moyenDeTransport[] = $moyenDeTransport;
             $moyenDeTransport->setDepot($this);
         }
 
@@ -128,7 +122,7 @@ class Depot
 
     public function removeMoyenDeTransport(MoyenDeTransport $moyenDeTransport): self
     {
-        if ($this->MoyenDeTransport->removeElement($moyenDeTransport)) {
+        if ($this->moyenDeTransport->removeElement($moyenDeTransport)) {
             // set the owning side to null (unless already changed)
             if ($moyenDeTransport->getDepot() === $this) {
                 $moyenDeTransport->setDepot(null);
@@ -136,12 +130,5 @@ class Depot
         }
 
         return $this;
-    }
-
-    public function __toString(){
-        // to show the name of the Category in the select
-        return (string)$this->getId();
-        // to show the id of the Category in the select
-        // return $this->id;
     }
 }
