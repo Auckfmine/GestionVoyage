@@ -5,8 +5,7 @@
 {% block body %}
 
 <input type="text" id="search" class="form-control" placeholder="Search">
-<section class="jumbotron text-center">
-    <div class="container">
+
 
         {% for message in app.flashes('info')  %}
         <div class="alert-success" role="alert">
@@ -39,7 +38,8 @@
                 <td>{{ depot.Etat }}</td>
                 <td>
                     <a class="btn btn-outline-info" href="{{ path('depot_show', {'id': depot.id}) }}">show</a>
-                <a class="btn btn-outline-warning" href="{{ path('depot_edit', {'id': depot.id}) }}">edit</a>
+                    <a class="btn btn-outline-warning" href="{{ path('depot_edit', {'id': depot.id}) }}">edit</a>
+                    <a class="btn btn-danger" href="{{ path('depot_delete', {'id': depot.id}) }}">Delete</a>
                 </td>
             </tr>
         {% else %}
@@ -80,6 +80,6 @@
         <div class="navigation">
             {{ knp_pagination_render(depots) }}
         </div>
-    <a class="btn btn-secondary" href="{{ path('depot_new') }}">Create new</a>
-    <a class="btn btn-secondary" href="{{ path('depot_list') }}">Imprimer</a>
+    <a class="btn btn-dark" href="{{ path('depot_new') }}">Create new</a>
+    <a class="btn btn-dark" href="{{ path('depot_list') }}">Imprimer</a>
 {% endblock %}

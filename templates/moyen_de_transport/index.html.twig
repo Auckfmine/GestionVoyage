@@ -53,10 +53,9 @@
                 <td>{{ moyen_de_transport.NombreDePlace }}</td>
                 <td>
                     <a class="btn btn-outline-info" href="{{ path('moyen_de_transport_show', {'id': moyen_de_transport.id}) }}">show</a>
-
-
                 </td>
                 <td><a class="btn btn-outline-warning" href="{{ path('moyen_de_transport_edit', {'id': moyen_de_transport.id}) }}">edit</a></td>
+                <td><a class="btn btn-danger" action="{{ path('moyen_de_transport_delete', {'id': moyen_de_transport.id}) }}">Delete</a></td>
             </tr>
         {% else %}
             <tr>
@@ -66,34 +65,32 @@
         {% endfor %}
         }
         </tbody>
-        <script>
-            $(document).ready(function(){
-                $('#search').keyup(function(){
-                    search_table($(this).val());
-                });
-                function search_table(value){
-                    $('#tableac tbody tr').each(function(){
-                        var found = 'false';
-                        $(this).each(function(){
-                            if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+            <script>
+                $(document).ready(function(){
+                    $('#search').keyup(function(){
+                        search_table($(this).val());
+                    });
+                    function search_table(value){
+                        $('#tableac tbody tr').each(function(){
+                            var found = 'false';
+                            $(this).each(function(){
+                                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                                {
+                                    found = 'true';
+                                }
+                            });
+                            if(found == 'true')
                             {
-                                found = 'true';
+                                $(this).show();
+                            }
+                            else
+                            {
+                                $(this).hide();
                             }
                         });
-                        if(found == 'true')
-                        {
-                            $(this).show();
-
-                        }
-                        else
-                        {
-                            $(this).hide();
-
-                        }
-                    });
-                }
-            });
-        </script>
+                    }
+                });
+            </script>
     </table>
               <div class="navigation">
             {{ knp_pagination_render(moyen_de_transports) }}
