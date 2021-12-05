@@ -43,10 +43,7 @@ class StationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($station);
             $entityManager->flush();
-            $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
-            $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien ajoutée ");
-            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien ajoutée ");
+
 
             return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -78,10 +75,7 @@ class StationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
-            $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien modifiée ");
-            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien modifiée ");
+
 
             return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -102,10 +96,6 @@ class StationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($station);
             $entityManager->flush();
-            $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','e4c1859584e04ae1d30dcef4a2f09ba5','+14704444081');
-            $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien supprimée ");
-            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien supprimée ");
         }
 
         return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);
