@@ -31,9 +31,19 @@ class MoyenDeTransportType extends AbstractType
                 ]
             ])
             ->add('Date_de_mise_en_circulation')
-            ->add('Etat')
+            ->add('Etat',ChoiceType::class, [
+                'choices' => [
+                    'En_marche'=>'En_marche',
+                    'En_panne'=>'En_panne'
 
-            ->add('Accessible_au_handicape')
+                ],])
+
+            ->add('Accessible_au_handicape',choiceType::class, [
+        'choices' => [
+            'Oui'=>'Oui',
+            'Non'=>'Non'
+
+        ],])
             ->add('Prix_Achat',MoneyType::class, array(
                 'scale'=>2 ,
                 'currency'=>false,
