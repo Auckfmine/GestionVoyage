@@ -59,6 +59,7 @@ class MoyenDeTransport
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Poids is required")
+     *
      */
     private $Poids;
 
