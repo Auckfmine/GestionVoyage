@@ -53,25 +53,30 @@ class MoyenDeTransport
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Prix_Achat is required")
+     * @Assert\GreaterThan(100000,message="verifier le prix en Dt minimum 100000Million")
      */
     private $Prix_Achat;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Poids is required")
-     *
+     * @Assert\GreaterThan(100,message="verifier le Poids en Kg minimum 100kg")
      */
     private $Poids;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Longueur is required")
+     * @Assert\GreaterThan(3,message="verifier la Longuer en M minimum 3m")
+     * @Assert\LessThan(20,message="verifier la Longuer en M maximum 20m")
      */
     private $Longueur;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Largeur is required")
+     * @Assert\GreaterThan(1,message="verifier la Largeur en M minimum 1m")
+     * @Assert\LessThan(4,message="verifier la Largeur en M maximum 4m")
      */
     private $Largeur;
 
@@ -84,6 +89,7 @@ class MoyenDeTransport
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Nombre_de_place is required")
+     * @Assert\GreaterThan(40,message="verifier les nombres de place minimum 40 places")
      */
     private $Nombre_de_place;
 
