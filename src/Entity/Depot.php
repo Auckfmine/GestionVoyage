@@ -6,6 +6,7 @@ use App\Repository\DepotRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=DepotRepository::class)
@@ -21,21 +22,26 @@ class Depot
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Capacite is required")
+     * @Assert\GreaterThan(20,message="verifier la capacité minimum 20 MoyenTransport")
      */
     private $Capacite;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Categorie is required")
      */
     private $Categorie;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Localisation is required")
      */
     private $Localisation;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Etat is required")
      */
     private $Etat;
 
