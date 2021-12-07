@@ -44,6 +44,17 @@ class DepotController extends AbstractController
     }
 
     /**
+     * @Route("/Depotliste", name="depot_liste_front")
+     */
+    public function listVoy(DepotRepository $depotRepository): Response
+    {
+        return $this->render('demo/destination-fullwidth/DepotsShow.html.twig', [
+            'Depot' => $depotRepository->findAll(),
+        ]);
+    }
+
+
+    /**
      * @Route("/ListDepot", name="depot_list", methods={"GET"})
      */
     public function listDepot(DepotRepository $depotRepository): Response
