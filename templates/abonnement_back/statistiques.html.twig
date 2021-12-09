@@ -1,0 +1,191 @@
+{% extends "dashboard.html.twig" %}
+
+{% block body %}
+
+
+    <div class="row">
+        <div class="col-xl-6 col-md-12 mb-5">
+            <div class="card overflow-hidden">
+                <div class="card-content">
+                    <div class="media align-items-stretch bg-primary white">
+                        <div class="bg-primary bg-darken-2 p-2 media-middle">
+                            <i class="icon-people font-large-2 white"></i>
+                        </div>
+                        <div class="media-body p-2">
+                            <h4>Abonnements</h4>
+                            <span>Nombre total des abonnées</span>
+                        </div>
+                        <div class="media-right p-2 media-middle">
+                            <h1>{{nb_abonnee}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-md-12 mb-5">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media align-items-stretch bg-warning white">
+                        <div class="bg-warning bg-darken-2 p-2 media-middle">
+                            <i class="icon-user-following font-large-2 white"></i>
+                        </div>
+                        <div class="media-body p-2">
+                            <h4>Abonnements récents</h4>
+                            <span>Nombre d'abonnées dernière mois</span>
+                        </div>
+                        <div class="media-right p-2 media-middle">
+                            <h1>{{ nb_abonnee_last_month }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6 col-md-12 mb-5">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media align-items-stretch bg-danger white">
+                        <div class="p-2 media-middle">
+                            <h1>{{ nb_abonn_dispo }}</h1>
+                        </div>
+                        <div class="media-body p-2">
+                            <h4>Abonnements Disponibles</h4>
+                            <span>Nombre total des abonnements dispo</span>
+                        </div>
+                        <div class="media-right bg-danger bg-darken-2 p-2 media-middle">
+                            <i class="icon-directions font-large-2 white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-md-12 mb-5">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media align-items-stretch bg-success white">
+                        <div class="p-2 media-middle">
+                            <h1>{{ total }}
+                                DT</h1>
+                        </div>
+                        <div class="media-body p-2">
+                            <h4>Total Cost</h4>
+                            <span>Monthly Cost</span>
+                        </div>
+                        <div class="media-right bg-success bg-darken-2 p-2 media-middle">
+                            <i class="icon-wallet font-large-2 white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 my-5">
+            <h3>Les abonnements disponible seleon le type du moyenne du transport</h3>
+            <canvas id="pie"></canvas>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+
+        <div class="col-10">
+            <h3>Nombres des abonnées seleon le type d'abonnement</h3>
+            <canvas id="bar"></canvas>
+        </div>
+        <div class="col-1"></div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+    <style>
+        .font-large-2 {
+            font-size: 50px;
+        }
+
+        .white {
+            color: white;
+        }
+
+        .media {
+            padding: 15px;
+            border-radius: 10px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        // Creation of pie chart
+        fetch('/admin/abonnements/statistiques/type',).then(res => res.json()).then(data => {
+            const pie_data = {
+                labels: Object.keys(data),
+                datasets: [
+                    {
+                        label: 'My First Dataset',
+                        data: Object.values(data),
+                        backgroundColor: [
+                            'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }
+                ]
+            }
+            const pie_config = {
+                type: 'pie',
+                data: pie_data
+            };
+            const pie = new Chart(document.getElementById('pie'), pie_config);
+        });
+
+
+        // Creation of Bar Chart
+        fetch('/admin/abonnements/statistiques/abonnee',).then(res => res.json()).then(data => {
+            console.log(data)
+            const labels = Object.keys(data)
+            const bar_data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Nombres des abonnées selon le type de moyenne de transport',
+                        data: Object.values(data),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)'
+                        ],
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            const bar_config = {
+                type: 'bar',
+                data: bar_data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            const bar = new Chart(document.getElementById('bar'), bar_config);
+        });
+    </script>
+
+
+{% endblock %}

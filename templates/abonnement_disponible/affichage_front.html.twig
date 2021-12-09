@@ -1,0 +1,338 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container-lg">
+    {% for msg in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    <div class="row my-2 align-items-center">
+        <div class="col-5">
+            <h2>
+                Liste des abonnements
+            </h2>
+        </div>
+        <div class="col-5">
+            <div class="filter">
+                <select class="form-select mx-1" name="type" id="type">
+                    <option value="" disabled selected>
+                        Choisir un type
+                    </option>
+                    <option value="bus">
+                        Bus
+                    </option>
+                    <option value="train">
+                        Train
+                    </option>
+                    <option value="metro">
+                        Metro
+                    </option>
+                </select>
+                <select class="form-select" name="prix" id="prix">
+                    <option value="" disabled selected>
+                        Trier par prix
+                    </option>
+                    <option value="asc">
+                        Asc
+                    </option>
+                    <option value="desc">
+                        Desc
+                    </option>
+                </select>
+                <button class="reset-btn" id="reset-btn">
+						<span class="material-icons">
+							restart_alt
+						</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="search">
+                <input class="form-control" type="text" name="search" id="search" placeholder="Rechercher" required/>
+                <button class="search-btn" id="search-btn">
+						<span class="material-icons">
+							search
+						</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-content">
+        <div class="row" id="container">
+            {% for abonnement_disponible in abonnement_disponibles %}
+                <div class="col-lg-4 col-md-6 col-sm-12 col-content">
+                    <div class="image">
+                        <img id="image" class="img" src="{{ asset('img/' ~ abonnement_disponible.type|lower ~ '.jpg') }}" alt=""/>
+                    </div>
+                    <h4 id="descr" class="desc">
+                        {{ abonnement_disponible.descr }}
+                    </h4>
+                    <div class="bottom">
+                        <div class="actions">
+                            <a id="abonn_link" class="btn btn-success btn-sm btn-sm" href="{{ path('new_abonnement', {'id': abonnement_disponible.id}) }}">
+                                S'abonner
+                            </a>
+                        </div>
+                        <h5 id="prix_mois" class="prix">
+                            {{ abonnement_disponible.prixMois }}
+                            DT/Mois
+                        </h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block stylesheets %}
+        <style>
+            @keyframes showUp {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            .col-content {
+                margin: 10px 0;
+                height: 250px;
+                position: relative;
+                text-align: center;
+                animation: ease 0.75s showUp;
+            }
+
+            .img {
+                height: 100%;
+            }
+
+            .image {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+
+            .image .img {
+                width: 100%;
+                vertical-align: top;
+                border-radius: 10px;
+            }
+
+            .image:after {
+                content: '\A';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: rgba(0, 0, 0, 0.35);
+                border-radius: 10px;
+                box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+            }
+
+            .desc {
+                position: absolute;
+                top: 8px;
+                right: 16px;
+                color: white;
+            }
+
+            .actions {
+                position: absolute;
+                bottom: 4px;
+                right: 16px;
+            }
+
+            .prix {
+                position: absolute;
+                bottom: -5px;
+                left: 16px;
+                color: teal;
+                /* color: teal; */
+                /* border: 1px solid lightgray; */
+                background-color: rgb(231, 231, 231);
+                border-radius: 3px;
+                padding: 3px;
+                opacity: 0.8;
+            }
+
+            .reset-btn {
+                background: none;
+                border: none;
+                display: flex;
+                flex-direction: row;
+            }
+
+            .search-btn {
+                background: none;
+                border: none;
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+                right: 0;
+            }
+
+            .filter {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .search {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .data-content {
+                position: relative;
+                width: 100%;
+                font-size: 0;
+            }
+
+            .overlay {
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(128, 128, 128, 0.6);
+                border-radius: 5px;
+            }
+
+            .spinner {
+                display: inline-block;
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                z-index: 2;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .spinner:after {
+                content: ' ';
+                display: block;
+                width: 64px;
+                height: 64px;
+                margin: 8px;
+                border-radius: 50%;
+                border: 6px solid rgb(0, 0, 0);
+                border-color: rgb(0, 0, 0) transparent rgb(0, 0, 0) transparent;
+                animation: spinner 1.2s linear infinite;
+            }
+            @keyframes spinner {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    {% endblock %}
+
+    {% block javascripts %}
+    <script language="javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <script>
+        loadEffect()
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            document.getElementById('type').selectedIndex = 0
+            document.getElementById('prix').selectedIndex = 0
+            document.getElementById('search').value = null
+            loadEffect()
+            recherche_ajax()
+        })
+
+        function isLoading() {
+            let overlay = document.querySelector('.overlay')
+            let spinner = document.querySelector('.spinner')
+            return overlay || spinner
+        }
+
+        function loadEffect() {
+            if (isLoading())
+                return false
+
+
+
+
+
+            let dataContent = document.querySelector('.data-content')
+            let overlay = document.createElement('div')
+            let spinner = document.createElement('div')
+            overlay.classList.add('overlay')
+            spinner.classList.add('spinner')
+            dataContent.appendChild(overlay)
+            dataContent.appendChild(spinner)
+            const timeout = setTimeout(() => {
+                dataContent.removeChild(document.querySelector('.overlay'))
+                dataContent.removeChild(document.querySelector('.spinner'))
+            }, 500)
+        }
+
+        document.getElementById('type').addEventListener('change', () => {
+            loadEffect()
+            recherche_ajax()
+        })
+
+        document.getElementById('prix').addEventListener('change', () => {
+            loadEffect()
+            recherche_ajax()
+        })
+
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            loadEffect()
+            recherche_ajax()
+        })
+
+        function recherche_ajax() {
+            const type = document.getElementById('type').value
+            const prix = document.getElementById('prix').value
+            const req = document.getElementById('search').value
+
+            $.ajax({
+                url: '/abonnements/rechercher',
+                type: 'POST',
+                data: {
+                    type,
+                    prix,
+                    req
+                },
+                dataType: 'json',
+                async: true,
+
+                success: function (data, status) {
+                    console.log(data)
+                    $('#container').empty()
+                    for (i = 0; i < data.length; i ++) {
+                        const item = $(`<div class="col-lg-4 col-md-6 col-sm-12 col-content"><div class="image"><img id="image" class="img" alt=""/></div><h4 id="descr" class="desc"></h4><div class="bottom"><div class="actions"><a id="abonn_link" class="btn btn-success btn-sm btn-sm">S'abonner</a></div><h5 id="prix_mois" class="prix"></h5></div></div>`)
+                        $('#descr', item).html(data[i].descr)
+                        $('#prix_mois', item).html(data[i].prix_mois + ' DT/Mois')
+                        $('#image', item).attr('src', "/img/" + data[i].type + ".jpg")
+                        $('#abonn_link', item).attr('href', "/abonnement/new/" + data[i].id)
+                        $('#container').append(item)
+
+                        console.log(data[i])
+                    }
+                },
+                error: function () {
+                    alert('Ajax request failed')
+                }
+            })
+        }
+    </script>
+</div>
+
+{% endblock %}

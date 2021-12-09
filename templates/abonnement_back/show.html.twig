@@ -1,0 +1,222 @@
+{% extends "dashboard.html.twig" %}
+
+{% block body %}
+
+    {% for msg in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+        </div>
+    {% endfor %}
+
+    <div class="wrapper">
+        <h3>Abonnements Disponibles</h3>
+
+        <a href="{{ path('abonnement_disponible_new') }}" class="btn btn-primary">Ajouter Nouveau Abonnement</a>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-2">
+            <h5 style="text-align: left">
+                Filtres :
+            </h5>
+        </div>
+        <div class="col-6">
+            <div class="filter">
+                <select class="custom-select mx-1" name="type" id="type">
+                    <option value="" disabled selected>
+                        Choisir un type
+                    </option>
+                    <option value="bus">
+                        Bus
+                    </option>
+                    <option value="train">
+                        Train
+                    </option>
+                    <option value="metro">
+                        Metro
+                    </option>
+                </select>
+                <select class="custom-select" name="prix" id="prix">
+                    <option value="" disabled selected>
+                        Trier par prix
+                    </option>
+                    <option value="asc">
+                        Asc
+                    </option>
+                    <option value="desc">
+                        Desc
+                    </option>
+                </select>
+                <button class="reset-btn" id="reset-btn">
+					<span class="material-icons">
+						restart_alt
+					</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="search">
+                <input class="form-control" type="text" name="search" id="search" placeholder="Rechercher" required/>
+                <button class="search-btn" id="search-btn">
+					<span class="material-icons">
+						search
+					</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Description</th>
+            <th scope="col">Type</th>
+            <th scope="col">Prix Mensuel</th>
+            <th scope="col">Prix Semestriel</th>
+            <th scope="col">Prix Annuel</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody id="table">
+        {% for abonnement_disponible in abonnement_disponibles %}
+            <tr>
+                <td>{{ abonnement_disponible.id }}</td>
+                <td>{{ abonnement_disponible.descr }}</td>
+                <td>{{ abonnement_disponible.type }}</td>
+                <td>{{ abonnement_disponible.prixMois }}</td>
+                <td>{{ abonnement_disponible.prixSemestre }}</td>
+                <td>{{ abonnement_disponible.prixAnnuel }}</td>
+                <td>
+                    <a href="{{ path('abonnement_disponible_edit', {'id': abonnement_disponible.id}) }}" class="btn btn-warning btn-sm mr-1 text-light">Modifier</a>
+                    <a href="{{ path('abonnement_disponible_delete', {'id': abonnement_disponible.id}) }}" class="btn btn-danger btn-sm text-light" onclick="return confirm('Vous voulez vraiment le supprimer ?');">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+
+{% block stylesheets %}
+
+    <style>
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .reset-btn {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: row;
+            cursor: pointer;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+        }
+
+        .search-btn:focus,
+        .reset-btn:focus {
+            outline: 0;
+        }
+
+        .filter {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script language="javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <script>
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            document.getElementById('type').selectedIndex = 0
+            document.getElementById('prix').selectedIndex = 0
+            document.getElementById('search').value = null
+            recherche_ajax()
+        })
+
+        function recherche_ajax() {
+            const type = document.getElementById('type').value
+            const prix = document.getElementById('prix').value
+            const req = document.getElementById('search').value
+
+            $.ajax({
+                url: '/abonnements/rechercher',
+                type: 'POST',
+                data: {
+                    type,
+                    prix,
+                    req
+                },
+                dataType: 'json',
+                async: true,
+
+                success: function (data, status) {
+                    $("#table").empty();
+                    console.log(data)
+                    for (let i = 0; i < data.length; i++) {
+                        let row = $(`<tr><td id="id"></td><td id="descr"></td><td id="type"></td><td id="prix_mois"></td><td id="prix_semestre"></td><td id="prix_annuel"></td><td><a id="modifier" class="btn btn-warning btn-sm mr-1 text-light">Modifier</a><a id="supprimer" class="btn btn-danger btn-sm text-light" onclick="return confirm('Vous voulez vraiment le supprimer ?');">Supprimer</a></td></tr>`)
+
+                        $("#id", row).html(data[i].id);
+                        $("#descr", row).html(data[i].descr);
+                        $("#type", row).html(data[i].type);
+                        $("#prix_mois", row).html(data[i].prix_mois);
+                        $("#prix_semestre", row).html(data[i].prix_semestre);
+                        $("#prix_annuel", row).html(data[i].prix_annuel);
+                        $("#modifier", row).attr('href', '/admin/abonnements/' + data[i].id + '/modifier')
+                        $("#supprimer", row).attr('href', '/admin/abonnements/' + data[i].id + '/supprimer')
+
+
+                        $("#table").append(row)
+                    }
+                },
+                error: function () {
+                    alert('Ajax request failed')
+                }
+            })
+        }
+
+        document.getElementById('type').addEventListener('change', () => {
+            recherche_ajax()
+        })
+
+        document.getElementById('prix').addEventListener('change', () => {
+            recherche_ajax()
+        })
+
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            recherche_ajax()
+        })
+    </script>
+{% endblock %}
