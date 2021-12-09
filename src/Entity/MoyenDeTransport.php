@@ -95,6 +95,14 @@ class MoyenDeTransport
      */
     private $depot;
 
+    /**
+     * @param $id
+     */
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

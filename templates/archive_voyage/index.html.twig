@@ -3,7 +3,7 @@
 {% block title %}Voyage index{% endblock %}
 
 {% block body %}
-    <h1>Liste Des Voyages</h1>
+    <h1>Archive Des Voyages</h1>
 
     <input type="text" id="search" class="form-control" placeholder="Search">
 
@@ -11,18 +11,18 @@
 
     <table id ="tableac" class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Ref_voyage</th>
-                <th>Station_Depart</th>
-                <th>Station_Arrive</th>
-                <th>Vehicule</th>
-                <th>Ligne</th>
+        <tr>
+            <th>Id</th>
+            <th>Ref_voyage</th>
+            <th>Station_Depart</th>
+            <th>Station_Arrive</th>
+            <th>Vehicule</th>
 
-                <th>Date_depart</th>
-                <th>Date_arrive</th>
-                <th>actions</th>
-            </tr>
+
+            <th>Date_depart</th>
+            <th>Date_arrive</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for voyage in voyages %}
@@ -32,13 +32,12 @@
                 <td>{{ voyage.getStationDepart()}}</td>
                 <td>{{ voyage.getStationArrive()}}</td>
                 <td>{{ voyage.MoyenDeTransport }}</td>
-                <td>{{ voyage.ligne ? voyage.ligne|join(', ') : '' }}</td>
+
                 <td>{{ voyage.dateDepart ? voyage.dateDepart|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ voyage.dateArrive ? voyage.dateArrive|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('voyage_show', {'id': voyage.id}) }}">show</a>
-                    <a class="btn btn-danger" href="{{ path('voyage_edit', {'id': voyage.id}) }}">edit</a>
-                    <a class="btn btn-danger" href="{{ path('archive_voyage', {'id': voyage.id}) }}">archiver</a>
+
+                    <a class="btn btn-danger" href="#">Désarchiver</a>
                 </td>
             </tr>
         {% else %}

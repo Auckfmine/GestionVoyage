@@ -36,15 +36,15 @@ class Voyage
     private $ref_voyage;
 
     /**
-     * @ORM\ManyToOne (targetEntity=Station::class, inversedBy="voyage",cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne (targetEntity=Station::class)
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
      * @Assert\NotBlank(message="Station is required")
      */
     private $station_depart;
 
     /**
-     * @ORM\ManyToOne (targetEntity=Station::class,inversedBy="voyage" ,cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne (targetEntity=Station::class)
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
      * @Assert\NotBlank(message="Station_arrive is required")
      */
     private $Station_arrive;
@@ -56,8 +56,8 @@ class Voyage
     private $ligne = [];
 
     /**
-     * @ORM\ManyToOne(targetEntity=MoyenDeTransport::class, inversedBy="voyage", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity=MoyenDeTransport::class)
+     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
      * @Assert\NotBlank(message="MoyenDeTransport is required")
      */
     private $MoyenDeTransport;
