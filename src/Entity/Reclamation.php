@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ReclamationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,13 @@ class Reclamation
      * @ORM\Column(type="string", length=255)
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="reclamation")
+     */
+    private $category;
+
+
 
     public function getId(): ?int
     {
@@ -72,4 +81,20 @@ class Reclamation
 
         return $this;
     }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+
+
+
 }

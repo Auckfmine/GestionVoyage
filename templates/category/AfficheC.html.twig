@@ -4,30 +4,26 @@
 
 {% block body %}
 
-    <h1>Reclamation</h1>
+    <h1>Category</h1>
 
-    <input type="text" id="search" class="form-control" placeholder="Search">
+    <label for="search"></label><input type="text" id="search" class="form-control" placeholder="Search">
     <table id="tableac" class="table">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Username</th>
-            <th>Object</th>
-            <th>Description</th>
-            <th>Category</th>
+            <th>Titre</th>
+
         </tr>
         </thead>
         <tbody>
-        {% for reclamation in reclamations %}
+        {% for category in categoryy %}
             <tr>
-                <td>{{ reclamation.id }}</td>
-                <td>{{ reclamation.username }}</td>
-                <td>{{ reclamation.object }}</td>
-                <td>{{ reclamation.description }}</td>
-                <td>{{ reclamation.category.titre}}</td>
+                <td>{{ category.id }}</td>
+                <td>{{ category.titre }}</td>
+
                 <td>
-                    <a class="btn btn-primary" href="{{ path('d', {'id': reclamation.id}) }}">Delete</a>
-                    <a class="btn btn-primary" href="{{ path('update_reclamation', {'id': reclamation.id}) }}">Update</a>
+                    <a class="btn btn-primary" href="{{ path('delete', {'id': category.id}) }}">Delete</a>
+                    <a class="btn btn-primary" href="{{ path('update_category', {'id': category.id}) }}">Update</a>
                 </td>
             </tr>
         {% else %}
@@ -38,7 +34,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-warning" href="{{ path('ajouter_reclamation') }}">Create new</a>
+    <a class="btn btn-warning" href="{{ path('ajouter_category') }}">Create new</a>
 {% endblock %}
 
 {% block javascripts %}
