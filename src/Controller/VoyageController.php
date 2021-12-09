@@ -82,7 +82,7 @@ class VoyageController extends AbstractController
 
 
             $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
             $flashy->success('Voyage ajouté avec succes !','http://your-awesome-link.com');
@@ -118,7 +118,7 @@ class VoyageController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
             $flashy->success('Voyage Modifié avec succes !','http://your-awesome-link.com');
@@ -145,7 +145,7 @@ class VoyageController extends AbstractController
             $entityManager->flush();
 
             $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
 
