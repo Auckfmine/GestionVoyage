@@ -1153,36 +1153,7 @@
                 </div>
 
 
-                <script>
-                    $(document).ready(function(){
-                        $('#search').keyup(function(){
-                            search_table($(this).val());
-                            console.log("changed")
-                        });
-                        function search_table(value){
-                            $('#Mcontent').each(function(){
-                                var found = 'false';
-                                $(this).each(function(){
-                                    if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
-                                    {
-                                        found = 'true';
-                                    }
-                                });
-                                if(found == 'true')
-                                {
-                                    $(this).show();
 
-                                }
-                                else
-                                {
-                                    $(this).hide();
-
-                                }
-                            });
-                        }
-                    });
-
-                </script>
                 <br class="clear"/>
                 <div class="tour_advance_search_wrapper">
                     <div class="one_fourth themeborder">
@@ -1235,7 +1206,7 @@
 
                 <div id="page_main_content" class="sidebar_content full_width fixed_column">
 
-                    <div class="standard_wrapper">
+                    <div id="Mcontent" class="standard_wrapper">
 
 
                         <div id="portfolio_filter_wrapper"
@@ -1244,9 +1215,9 @@
 
 
                             {% for voyage in voyages %}
-                                <div id="Mcontent" class="element grid classic3_cols animated2">
+                                <div  class="element grid classic3_cols animated2">
 
-                                    <div class="one_third gallery3 grid static filterable portfolio_type themeborder"
+                                    <div  class="one_third gallery3 grid static filterable portfolio_type themeborder"
                                          data-id="post-2"
                                          style="background-image:url(https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/pexels-photo-211051-700x466.jpeg);">
                                         <a class="tour_image"
@@ -1637,6 +1608,37 @@
     <a href="https://1.envato.market/EnokD" title="Purchase Theme" class="demotip" target="_blank"><span
                 class="ti-shopping-cart"></span></a>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('#search').keyup(function(){
+            search_table($(this).val());
+            console.log("changed")
+        });
+        function search_table(value){
+            $('#Mcontent').each(function(){
+                var found = 'false';
+                $(this).each(function(){
+                    if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                    {
+                        found = 'true';
+                    }
+                });
+                if(found == 'true')
+                {
+                    $(this).show();
+
+                }
+                else
+                {
+                    $(this).hide();
+
+                }
+            });
+        }
+    });
+
+</script>
 
 
 <script type="text/javascript">
