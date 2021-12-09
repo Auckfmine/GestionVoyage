@@ -83,9 +83,10 @@ class VoyageController extends AbstractController
             $email = new MailerApi();
             $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
-           // $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
+            $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
 
-
+            $this->addFlash(
+                'info' ,' Voyage ajouté avec succes !');
             return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -119,9 +120,10 @@ class VoyageController extends AbstractController
             $email = new MailerApi();
             $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
-            //$email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
+            $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
 
-
+            $this->addFlash(
+                'info' ,' Voyage Modifié avec succes !');
 
             return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -146,18 +148,16 @@ class VoyageController extends AbstractController
             $email = new MailerApi();
             $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
-            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
-
+            $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
+            $this->addFlash(
+                'info' ,' Voyage supprimé avec succes !');
         }
 
         return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
     }
 
 
-    /**
-     * @Route("/archive/{id}", name="voyage_archive", methods={"POST"})
-     * @throws TransportExceptionInterface
-     */
+
 
 
 
