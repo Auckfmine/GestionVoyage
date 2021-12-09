@@ -100,8 +100,6 @@ class MoyenDeTransportController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($moyenDeTransport);
             $entityManager->flush();
-
-
             $email = new MailerApi();
             $twilio = new TwilioApi('ACcb016d5d5b4e05ea366d44ec5227e10c','ac4747a918aeb184c86281050488de22','+12565679612');
             $twilio->sendSMS('+21658932889','Moyen de Transport Créer avec success');

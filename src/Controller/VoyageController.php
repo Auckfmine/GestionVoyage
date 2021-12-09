@@ -7,6 +7,7 @@ use App\api\TwilioApi;
 use App\Entity\Voyage;
 use App\Form\VoyageType;
 use App\Repository\VoyageRepository;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -68,7 +69,7 @@ class VoyageController extends AbstractController
     /**
      * @Route("/new", name="voyage_new", methods={"GET","POST"})
      */
-    public function new(MailerInterface $mailer,Request $request): Response
+    public function new(MailerInterface $mailer,Request $request,FlashyNotifier $flashy): Response
     {
         $voyage = new Voyage();
         $form = $this->createForm(VoyageType::class, $voyage);
@@ -84,9 +85,8 @@ class VoyageController extends AbstractController
             $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
+            $flashy->success('Voyage ajouté avec succes !','http://your-awesome-link.com');
 
-            $this->addFlash(
-                'info' ,' Voyage ajouté avec succes !');
             return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -109,7 +109,7 @@ class VoyageController extends AbstractController
     /**
      * @Route("/{id}/edit", name="voyage_edit", methods={"GET","POST"})
      */
-    public function edit(MailerInterface $mailer,Request $request, Voyage $voyage): Response
+    public function edit(MailerInterface $mailer,Request $request, Voyage $voyage,FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(VoyageType::class, $voyage);
         $form->handleRequest($request);
@@ -121,9 +121,8 @@ class VoyageController extends AbstractController
             $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
+            $flashy->success('Voyage Modifié avec succes !','http://your-awesome-link.com');
 
-            $this->addFlash(
-                'info' ,' Voyage Modifié avec succes !');
 
             return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -138,7 +137,7 @@ class VoyageController extends AbstractController
      * @Route("/{id}", name="voyage_delete", methods={"POST"})
      * @throws TransportExceptionInterface
      */
-    public function delete(MailerInterface $mailer,Request $request, Voyage $voyage): Response
+    public function delete(MailerInterface $mailer,Request $request, Voyage $voyage,FlashyNotifier $flashy): Response
     {
         if ($this->isCsrfTokenValid('delete'.$voyage->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -149,8 +148,9 @@ class VoyageController extends AbstractController
             $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','4cfb02c2f12463bcefeddd3679f28005','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
-            $this->addFlash(
-                'info' ,' Voyage supprimé avec succes !');
+
+
+            $flashy->success('Voyage supprimé avec succes','http://your-awesome-link.com');
         }
 
         return $this->redirectToRoute('voyage_index', [], Response::HTTP_SEE_OTHER);
