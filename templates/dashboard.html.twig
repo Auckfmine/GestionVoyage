@@ -210,12 +210,16 @@
                     {% endif %}
                 </div>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">My Profile</a>
-                <a class="dropdown-item" href="#">Account Settings</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="dropdown-item" href="{{ path('user_show', {'id': app.user.id}) }} }}">My Profile</a>
+                {% endif %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="dropdown-item" href="{{ path('modify_user', {'id': app.user.id}) }}">Account Settings</a>
+                {% endif %}
                 <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
                 <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="dashboard/thevectorlab.net/codelab/login.html">Sign Out</a>
+                <a class="dropdown-item" href="/logout">Sign Out</a>
             </div>
         </li>
         <li class="nav-item">

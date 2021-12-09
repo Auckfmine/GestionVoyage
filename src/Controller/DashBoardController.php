@@ -98,66 +98,6 @@ class DashBoardController extends AbstractController
 
         ]);
     }
-    /**
-     * @Route("/user/statistiques", name="user_statistiques", methods={"GET"})
-     *
-     */
-    public function getUserStats(UserRepository $userRepository): Response
-    {
-
-        //get all dates in the database
-        $filteredUsers = $userRepository->findByExampleField('2002-06-12');
-        $users = $userRepository->findAll();
-        $dates = [];
-        foreach ($users as $user){
-            $dates[]=$user->getBirthday()->format('Y-m-d');
-        }
-        //build an array with this dates and delete repetition
-        $filteredDates = array_unique($dates);
-        $finalDates = [];
-        $finalUsers = [];
-
-
-        //querry for voyages for each date in the new array
-        foreach ($filteredDates as $date){
-
-            $finalDates[] =  count($userRepository->findByExampleField($date));
-        }
-
-        $userId = [];
-        $userCreatedDate = [];
-        $userRole = [];
-
-        $roles =['CLIENT', 'ADMIN','RESPONSABLE_ABONNEMENT','RESPONSABLE_RECLAMATION','RESPONSABLE_MDT','RESPONSABLE_VOYAGE','RESPONSABLE_RESERVATION'] ;
-
-
-        foreach($users as $user){
-
-            $userId[] = $user->getId();
-            $userCreatedDate[] =$user->getBirthday();
-            $userRole[] = $user->getRole();
-        }
-        //$optimisedRole = array_unique($roles);
-        foreach ($roles as $role){
-
-            $finalroles[]=count($userRepository->findUserByRole($role));
-
-        }
-
-
-
-
-        return $this->render('user/stat.html.twig', [
-            'userId'=>  json_encode($userId),
-            'userCreatedDate'=>json_encode($userCreatedDate),
-            'role'=>json_encode($roles),
-            'filteredUsers'=>$filteredUsers,
-            'finalDates'=>json_encode($finalDates),
-            'finalroles' =>json_encode($finalroles),
-
-
-        ]);
-    }
 
 
     /**
