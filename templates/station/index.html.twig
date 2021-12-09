@@ -3,7 +3,10 @@
 {% block title %}Station index{% endblock %}
 
 {% block body %}
-
+{% for message in app.flashes('info')  %}
+<div class="alert-success" role="alert">
+    {{ message }}
+    {% endfor%}
     <h1>Liste Des Stations</h1>
 
     <input type="text" id="search" class="form-control" placeholder="Search">
