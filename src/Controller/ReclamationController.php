@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ReclamationType;
 use App\Repository\ReclamationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,11 +66,32 @@ class ReclamationController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $em->persist($reclamation);
             $em->flush();
+            return $this->redirectToRoute("afficher_reclamation");
+
         }
 
         //Appel de la vue
         return $this->render("reclamation/form.html.twig",
             ["form"=>$form->createView()]
         );
+    }
+    /**
+     * @Route("/{id}/edit", name="update_reclamation", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, Reclamation $reclamation, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ReclamationType::class, $reclamation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('afficher_reclamation', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('reclamation/form.html.twig', [
+            'reclamations' => $reclamation,
+            'form' => $form->createView(),
+        ]);
     }
 }

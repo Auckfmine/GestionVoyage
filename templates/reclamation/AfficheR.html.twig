@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>Liste Des Stations</h1>
+    <h1>Reclamation</h1>
 
     <input type="text" id="search" class="form-control" placeholder="Search">
     <table id="tableac" class="table">
@@ -25,6 +25,7 @@
                 <td>{{ reclamation.description }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('d', {'id': reclamation.id}) }}">Delete</a>
+                    <a class="btn btn-primary" href="{{ path('update_reclamation', {'id': reclamation.id}) }}">Update</a>
                 </td>
             </tr>
         {% else %}
@@ -68,3 +69,4 @@
         });
     </script>
 {% endblock %}
+
