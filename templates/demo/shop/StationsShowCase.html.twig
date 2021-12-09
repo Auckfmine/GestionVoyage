@@ -9,7 +9,7 @@
           href="https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/TG-Thumb.png"/>
 
 
-    <title>Grand Tour | Booking Travel WordPress &#8211; Just another WordPress site</title>
+    <title>Products &#8211; Grand Tour | Booking Travel WordPress</title>
     <style type="text/css"
            media="screen">#ui-datepicker-div.booked_custom_date_picker table.ui-datepicker-calendar tbody td a.ui-state-active, #ui-datepicker-div.booked_custom_date_picker table.ui-datepicker-calendar tbody td a.ui-state-active:hover, body #booked-profile-page input[type=submit].button-primary:hover, body .booked-list-view button.button:hover, body .booked-list-view input[type=submit].button-primary:hover, body table.booked-calendar input[type=submit].button-primary:hover, body .booked-modal input[type=submit].button-primary:hover, body table.booked-calendar th, body table.booked-calendar thead, body table.booked-calendar thead th, body table.booked-calendar .booked-appt-list .timeslot .timeslot-people button:hover, body #booked-profile-page .booked-profile-header, body #booked-profile-page .booked-tabs li.active a, body #booked-profile-page .booked-tabs li.active a:hover, body #booked-profile-page .appt-block .google-cal-button > a:hover, #ui-datepicker-div.booked_custom_date_picker .ui-datepicker-header {
             background: #ff4a52 !important;
@@ -52,6 +52,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="format-detection" content="telephone=no">
+    <link rel="alternate" type="application/rss+xml" title="Grand Tour | Booking Travel WordPress &raquo; Products Feed"
+          href="https://themes.themegoods.com/grandtour/demo/shop/feed/"/>
     <script type="text/javascript">
         window._wpemojiSettings = {
             "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/72x72\/",
@@ -97,7 +99,6 @@
             })), (n = t.source || {}).concatemoji ? c(n.concatemoji) : n.wpemoji && n.twemoji && (c(n.twemoji), c(n.wpemoji)))
         }(window, document, window._wpemojiSettings);
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style type="text/css">
         img.wp-smiley,
         img.emoji {
@@ -619,20 +620,12 @@
             src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/plugins/revslider/public/assets/js/rs6.min.js'
             id='revmin-js'></script>
     <link rel="https://api.w.org/" href="https://themes.themegoods.com/grandtour/demo/wp-json/"/>
-    <link rel="alternate" type="application/json"
-          href="https://themes.themegoods.com/grandtour/demo/wp-json/wp/v2/pages/3102"/>
     <link rel="EditURI" type="application/rsd+xml" title="RSD"
           href="https://themes.themegoods.com/grandtour/demo/xmlrpc.php?rsd"/>
     <link rel="wlwmanifest" type="application/wlwmanifest+xml"
           href="https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-includes/wlwmanifest.xml"/>
     <meta name="generator" content="WordPress 5.5.7"/>
     <meta name="generator" content="WooCommerce 3.4.8"/>
-    <link rel="canonical" href="https://themes.themegoods.com/grandtour/demo/"/>
-    <link rel='shortlink' href='https://themes.themegoods.com/grandtour/demo/'/>
-    <link rel="alternate" type="application/json+oembed"
-          href="https://themes.themegoods.com/grandtour/demo/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemes.themegoods.com%2Fgrandtour%2Fdemo%2F"/>
-    <link rel="alternate" type="text/xml+oembed"
-          href="https://themes.themegoods.com/grandtour/demo/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemes.themegoods.com%2Fgrandtour%2Fdemo%2F&#038;format=xml"/>
     <noscript>
         <style>.woocommerce-product-gallery {
                 opacity: 1 !important;
@@ -703,7 +696,8 @@
         }        </style>
 </head>
 
-<body data-rsssl=1 class="home page-template-default page page-id-3102 woocommerce-no-js ppb_enable">
+<body data-rsssl=1
+      class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page woocommerce-no-js">
 
 <input type="hidden" id="pp_menu_layout" name="pp_menu_layout" value="leftalign"/>
 <input type="hidden" id="pp_enable_right_click" name="pp_enable_right_click" value=""/>
@@ -745,23 +739,195 @@
         <div class="menu-main-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
                 <li id="menu-item-11"
-                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-11">
-                    <a href={{ path('index')}} aria-current="page">Acceuil</a>
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home  menu-item-11">
+                    <a href={{ path('index') }}>Acceuil</a>
 
                 </li>
                 <li id="menu-item-12"
                     class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-12">
                     <a href={{ path('list_voyages') }}>Voyages</a>
 
+                        </li>
+                        <li id="menu-item-230"
+                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-230">
+                            <a href={{ path('listStations') }}>Stations</a>
+
+                        </li>
+                        <li id="menu-item-237"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-237">
+                            <a href="https://themes.themegoods.com/grandtour/demo/tours/tour-3-columns-grid/">Tour Grid
+                                Fullwidth</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-241"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-241"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-2-columns-grid/">2
+                                        Columns</a></li>
+                                <li id="menu-item-238"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-238"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-3-columns-grid/">3
+                                        Columns</a></li>
+                                <li id="menu-item-244"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-244"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-4-columns-grid/">4
+                                        Columns</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-247"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-247">
+                            <a href="https://themes.themegoods.com/grandtour/demo/tours/tour-grid-right-sidebar/">Tour
+                                Grid Sidebar</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-248"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-248"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-grid-right-sidebar/">Right
+                                        Sidebar</a></li>
+                                <li id="menu-item-253"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-253"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-grid-left-sidebar/">Left
+                                        Sidebar</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-256"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-256">
+                            <a href="https://themes.themegoods.com/grandtour/demo/tours/tour-list-right-sidebar/">Tour
+                                List Sidebar</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-257"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-257"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-list-right-sidebar/">Right
+                                        Sidebar</a></li>
+                                <li id="menu-item-260"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-list-left-sidebar/">Left
+                                        Sidebar</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-261"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-261">
+                            <a href="https://themes.themegoods.com/grandtour/demo/tours/tour-3-columns-grid/">Tour
+                                Header Type</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-262"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-262"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-3-columns-grid/">Featured
+                                        Image</a></li>
+                                <li id="menu-item-265"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tours/tour-3-columns-video-header/">Video</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-3477"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3477">
+                            <a href="#">Tour Categories</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-3478"
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-tourcat menu-item-3478"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tourcat/rural/">Rural</a>
+                                </li>
+                                <li id="menu-item-3480"
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-tourcat menu-item-3480"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tourcat/snow-ice/">Snow
+                                        &#038; Ice</a></li>
+                                <li id="menu-item-3481"
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-tourcat menu-item-3481"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tourcat/wildlife/">Wildlife</a>
+                                </li>
+                                <li id="menu-item-3479"
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-tourcat menu-item-3479"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tourcat/mountain/">Mountain</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
                 <li id="menu-item-200"
-                    class="menu-item menu-item-type-post_type menu-item-object-tour  menu-item-200">
-                    <a href={{ path('listStations') }}>Station</a>
-
+                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-has-children menu-item-200">
+                    <a href="https://themes.themegoods.com/grandtour/demo/tour/the-new-california/">Booking</a>
+                    <ul class="sub-menu">
+                        <li id="menu-item-3509"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3509">
+                            <a href="#">Online Payment for Booking</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-3515"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-3515"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/grand-switzerland/">Variable
+                                        Tour Pricing</a></li>
+                                <li id="menu-item-204"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-204"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/swiss-alps-trip/">Simple
+                                        Tour Pricing</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-3507"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3507">
+                            <a href="#">Custom Booking Form</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-202"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-202"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/the-new-california/">Booking
+                                        Form + Sub Tour Date</a></li>
+                                <li id="menu-item-314"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-314"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/niko-trip/">Booking
+                                        Form + Custom Date</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-3521"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3521">
+                            <a href="#">Tour Durations</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-3522"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-3522"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/hong-kong/">Single
+                                        Day Tour</a></li>
+                                <li id="menu-item-3523"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-3523"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/grand-switzerland/">Multiple
+                                        Days Tour</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-276"
+                            class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-276"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/tour/5-lake-of-fuji-san/">Custom
+                                Booking URL for Affiliate Tour</a></li>
+                        <li id="menu-item-3624"
+                            class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-3624"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/tour/exclusive-prague-trip/">Custom
+                                Booking using custom HTML &#038; Shortcode</a></li>
+                        <li id="menu-item-3508"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3508">
+                            <a href="#">Header Options</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-205"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-205"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/french-autumn/">Standard
+                                        Background Header</a></li>
+                                <li id="menu-item-201"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-201"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/great-britain-travel/">Video
+                                        Background Header</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-3620"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3620">
+                            <a href="#">Layout Options</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-3621"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-3621"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/colorful-singapore/">With
+                                        Sidebar</a></li>
+                                <li id="menu-item-3623"
+                                    class="menu-item menu-item-type-post_type menu-item-object-tour menu-item-3623"><a
+                                            href="https://themes.themegoods.com/grandtour/demo/tour/discover-japan/">Fullwidth</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
                 <li id="menu-item-13"
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-13">
-                    <a href="#">Depo des Vehicules</a>
+                    <a href="#">Destinations</a>
                     <ul class="sub-menu">
                         <li id="menu-item-299"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-299"><a
@@ -791,29 +957,42 @@
                 </li>
                 <li id="menu-item-14"
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-14">
-                    <a href="#">Reservation</a>
+                    <a href="#">Pages</a>
                     <ul class="sub-menu">
                         <li id="menu-item-2468"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2468"><a
-                                    href="https://themes.themegoods.com/grandtour/demo/about-us/">Reservation Train</a>
-                        </li>
+                                    href="https://themes.themegoods.com/grandtour/demo/about-us/">About Us</a></li>
                         <li id="menu-item-3093"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3093"><a
-                                    href="https://themes.themegoods.com/grandtour/demo/contact-us/">Reservation
-                                Metro</a></li>
+                                    href="https://themes.themegoods.com/grandtour/demo/contact-us/">Contact Us</a></li>
                         <li id="menu-item-323"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-323"><a
-                                    href="https://themes.themegoods.com/grandtour/demo/faqs/">Reservation Bus</a></li>
+                                    href="https://themes.themegoods.com/grandtour/demo/faqs/">FAQs</a></li>
                         <li id="menu-item-313"
                             class="menu-item menu-item-type-post_type menu-item-object-galleries menu-item-313"><a
-                                    href="https://themes.themegoods.com/grandtour/demo/galleries/gallery/">Consulter Mes
-                                Reservations</a></li>
-
+                                    href="https://themes.themegoods.com/grandtour/demo/galleries/gallery/">Gallery</a>
+                        </li>
+                        <li id="menu-item-2456"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2456"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/page-fullwidth/">Page
+                                Fullwidth</a></li>
+                        <li id="menu-item-2460"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2460"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/page-video-header/">Page + Video
+                                Background Header</a></li>
+                        <li id="menu-item-2455"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2455"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/page-right-sidebar/">Page Right
+                                Sidebar</a></li>
+                        <li id="menu-item-2454"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2454"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/page-left-sidebar/">Page Left
+                                Sidebar</a></li>
                     </ul>
                 </li>
                 <li id="menu-item-15"
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15">
-                    <a href="#">Abonnement</a>
+                    <a href="#">Blog</a>
                     <ul class="sub-menu">
                         <li id="menu-item-94"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-94"><a
@@ -855,27 +1034,70 @@
                 </li>
                 <li id="menu-item-16"
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-16">
-                    <a href="#">Reclammation</a>
+                    <a href="#">Shortcodes</a>
                     <ul class="sub-menu">
                         <li id="menu-item-342"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-342"><a
-                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/accordion-toggles/">Creer
-                                Une Reclammation</a></li>
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/accordion-toggles/">Accordion
+                                &#038; Toggles</a></li>
                         <li id="menu-item-348"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-348"><a
-                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/alert-boxes/">Consulter
-                                Mes Reclammation</a></li>
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/alert-boxes/">Alert
+                                Boxes</a></li>
                         <li id="menu-item-353"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-353"><a
-                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/animated-content/">Etat
-                                Des Reclammations</a></li>
-
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/animated-content/">Animated
+                                Content</a></li>
+                        <li id="menu-item-360"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-360"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/buttons-social-icons/">Buttons
+                                &#038; Social Icons</a></li>
+                        <li id="menu-item-366"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-366"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/columns/">Columns</a>
+                        </li>
+                        <li id="menu-item-376"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-376"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/google-maps/">Google
+                                Maps</a></li>
+                        <li id="menu-item-381"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-381"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/image-frame-animation/">Image
+                                Frame &#038; Animation</a></li>
+                        <li id="menu-item-389"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-389"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/image-teasers/">Image
+                                Teasers</a></li>
+                        <li id="menu-item-394"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-394"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/pricing-tables/">Pricing
+                                Tables</a></li>
+                        <li id="menu-item-2421"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2421"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shortcodes/tabs/">Tabs</a></li>
                     </ul>
                 </li>
                 <li id="menu-item-2442"
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2442">
-                    <a href="https://themes.themegoods.com/grandtour/demo/shop/">A propos</a>
-
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children current-menu-item current_page_item menu-item-2442">
+                    <a href="https://themes.themegoods.com/grandtour/demo/shop/" aria-current="page">Shop</a>
+                    <ul class="sub-menu">
+                        <li id="menu-item-2443"
+                            class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item menu-item-2443">
+                            <a href="https://themes.themegoods.com/grandtour/demo/shop/" aria-current="page">Shop
+                                Fullwidth</a></li>
+                        <li id="menu-item-2444"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2444"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shop/?sidebar=1">Shop Sidebar</a>
+                        </li>
+                        <li id="menu-item-2445"
+                            class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2445"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shop/beach-shoe/">Single Product
+                                Fullwidth</a></li>
+                        <li id="menu-item-2462"
+                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2462"><a
+                                    href="https://themes.themegoods.com/grandtour/demo/shop/safety-set/?sidebar=1">Single
+                                Product With Sidebar</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -1095,208 +1317,79 @@
         </div>
     </div>
     <div id="page_caption" class="hasbg parallax    "
-         style="background-image:url(https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/pexels-photo-24377.jpg);"
-         data-jarallax-video="https://www.youtube.com/watch?v=WyyN-9GNIf0">
+         style="background-image:url(https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/venice-WBEUROCITIES16.jpg);">
 
 
         <div class="page_title_wrapper">
             <div class="page_title_inner">
                 <div class="page_title_content">
-                    <h1>Liste Des Voyages Par Metro</h1>
+                    <h1>Shop</h1>
                     <div class="page_tagline">
-                        notre objectif c'est votre comfort
+                        This is sample of page tagline and you can set it up using page option
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 
     <!-- Begin content -->
-    <div id="page_content_wrapper" class="hasbg ">
-        <form id="search_form" name="search_form" method="get">
-            <div class="tour_search_wrapper">
-                <div class="one_fourth themeborder">
-                    <input id="search" type="text" autocomplete="off" placeholder="Nom De Station"/>
-                    <span class="ti-search"></span>
-
-                </div>
-                <div class="one_fourth themeborder">
-                    <select id="month" name="month">
-                        <option value="">Any Month</option>
-                        <option value="january">January</option>
-                        <option value="february">February</option>
-                        <option value="march">March</option>
-                        <option value="april">April</option>
-                        <option value="may">May</option>
-                        <option value="june">June</option>
-                        <option value="july">July</option>
-                        <option value="august">August</option>
-                        <option value="september">September</option>
-                        <option value="october">October</option>
-                        <option value="november">November</option>
-                        <option value="december">December</option>
-                    </select>
-                    <span class="ti-calendar"></span>
-                </div>
-                <div class="one_fourth themeborder">
-                    <select id="sort_by" name="sort_by">
-                        <option value="date">Trier Par Date De Voyage</option>
-
-                    </select>
-                    <span class="ti-exchange-vertical"></span>
-                </div>
-                <div class="one_fourth last themeborder">
-                    <input type="submit" class="button" value="Rechercher" onclick="recherche_ajax(event)"/>
-
-                </div>
+    <div id="page_content_wrapper" class="hasbg">
+        <div class="inner ">
+            <!-- Begin main content -->
+            <div class="inner_wrapper">
+                <div class="sidebar_content full_width">
 
 
-                <script>
-                    $(document).ready(function(){
-                        $('#search').keyup(function(){
-                            search_table($(this).val());
-                            console.log("changed")
-                        });
-                        function search_table(value){
-                            $('#Mcontent').each(function(){
-                                var found = 'false';
-                                $(this).each(function(){
-                                    if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
-                                    {
-                                        found = 'true';
-                                    }
-                                });
-                                if(found == 'true')
-                                {
-                                    $(this).show();
+                    <h1 class="page-title">Shop</h1>
 
-                                }
-                                else
-                                {
-                                    $(this).hide();
 
-                                }
-                            });
-                        }
-                    });
+                    <p class="woocommerce-result-count">
+                        Showing all 6 results</p>
+                    <form class="woocommerce-ordering" method="get">
+                        <select name="orderby" class="orderby">
+                            <option value="menu_order" selected='selected'>Default sorting</option>
+                            <option value="popularity">Sort by popularity</option>
+                            <option value="rating">Sort by average rating</option>
+                            <option value="date">Sort by newness</option>
+                            <option value="price">Sort by price: low to high</option>
+                            <option value="price-desc">Sort by price: high to low</option>
+                        </select>
+                        <input type="hidden" name="paged" value="1"/>
+                    </form>
 
-                </script>
-                <br class="clear"/>
-                <div class="tour_advance_search_wrapper">
-                    <div class="one_fourth themeborder">
-                        <select id="tourcat" name="tourcat">
-                            <option value="">Type De Vehicule</option>
-                            <option value="TRAIN">Train</option>
-                            <option value="BUS">Bus</option>
-                            <option value="METRO">Metro</option>
+                    <ul class="products columns-3">
 
-                        </select><span class="ti-angle-down"></span>
-                    </div>
 
-                    <div class="one_fourth themeborder">
-                        <select id="destination_id" name="destination_id">
-                            <option value="">Any Destinations</option>
-                            <option value="277">Tokyo</option>
-                            <option value="278">Seoul</option>
-                            <option value="279">Paris</option>
-                            <option value="284">London</option>
-                            <option value="285">Venice</option>
-                            <option value="287">Miami</option>
-                            <option value="289">Rome</option>
-                            <option value="270">Prague</option>
-                            <option value="291">California</option>
-                            <option value="292">Kyoto</option>
-                            <option value="293">Hong Kong</option>
-                            <option value="294">Santorini</option>
-                        </select><span class="ti-angle-down"></span>
-                    </div>
+                        {% for station in stations %}
+                            <li class="post-2432 product type-product status-publish has-post-thumbnail product_cat-equipment product_tag-backpack product_tag-ball product_tag-swimming first instock shipping-taxable purchasable product-type-simple">
+                                <a href={{ path('station_detail',{id:station.id}) }} class="woocommerce-LoopProduct-link
+                                   woocommerce-loop-product__link"><img width="300"
+                                                                        height="300"
+                                                                        src="https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/backpack-300x300.jpg"
+                                                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-post-image"
+                                                                        alt=""
+                                                                        loading="lazy"/>
+                                <h2 class="woocommerce-loop-product__title">{{ station.getNomStation }}
+                                    : {{ station.getRefStation }}</h2>
 
-                    <div class="one_fourth themeborder">
-                        <input id="budget" name="budget" type="text" placeholder="Max budget ex. 500"/>
-                        <span>$</span>
-                    </div>
-                </div>
+                                <div class="star-rating"><span style="width:70%">Rated <strong
+                                                class="rating">3.50</strong> out of 5</span></div>
 
-                <div class="tour_advance_search_wrapper_link">
-                    <a id="tour_advance_search_toggle" class="theme_link_color" href="javascript:;"><span
-                                class="icon ti-angle-down"></span>Advanced Search</a>
+
+                            </li>
+                        {% endfor %}
+
+
+                    </ul>
+
+
                 </div>
             </div>
-        </form>
-
-        <!-- Begin content -->
-
-        <div class="inner">
-
-            <div class="inner_wrapper nopadding">
-
-
-                <div id="page_main_content" class="sidebar_content full_width fixed_column">
-
-                    <div class="standard_wrapper">
-
-
-                        <div id="portfolio_filter_wrapper"
-                             class="gallery grid three_cols portfolio-content section content clearfix wrapper"
-                             data-columns="3">
-
-
-                            {% for voyage in voyages %}
-                                <div id="Mcontent" class="element grid classic3_cols animated2">
-
-                                    <div class="one_third gallery3 grid static filterable portfolio_type themeborder"
-                                         data-id="post-2"
-                                         style="background-image:url(https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/pexels-photo-211051-700x466.jpeg);">
-                                        <a class="tour_image"
-                                           href={{ path('voyage_detail',{id:voyage.id}) }}></a>
-
-
-                                        <div class="portfolio_info_wrapper">
-                                            <div class="tour_price ">
-                                                12,5 dt
-                                            </div>
-                                            <h4>{{ voyage.getStationDepart() }} - {{ voyage.getStationArrive() }}</h4>
-                                            <div class="tour_attribute_wrapper">
-                                                <div class="tour_attribute_rating">
-                                                    <div class="br-theme-fontawesome-stars-o">
-                                                        <div class="br-widget">
-                                                            <a href="javascript:;" class="br-selected"></a><a
-                                                                    href="javascript:;" class="br-selected"></a><a
-                                                                    href="javascript:;" class="br-selected"></a><a
-                                                                    href="javascript:;" class="br-selected"></a><a
-                                                                    href="javascript:;"></a></div>
-                                                    </div>
-                                                    <div class="tour_attribute_rating_count">
-                                                        4&nbsp;
-                                                        reviews
-                                                    </div>
-                                                </div>
-
-                                                <div class="tour_attribute_days">
-                                                    <span class="ti-time"></span>
-                                                    30&nbsp;minutes
-                                                </div>
-                                            </div>
-                                            <br class="clear"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-
-
-                        </div>
-                        <br class="clear"/>
-
-                    </div>
-                </div>
-
-            </div>
+            <!-- End main content -->
         </div>
     </div>
-
-
+    <!-- End content -->
+    <br class="clear"/><br/>
 
 
     <div id="footer" class=" ">
@@ -1375,7 +1468,7 @@
                 <ul id="footer_menu" class="footer_nav">
                     <li id="menu-item-215"
                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-215"><a
-                                href="https://themes.themegoods.com/grandtour/demo/">Home</a></li>
+                                href={{ path('index') }}>Home</a></li>
                     <li id="menu-item-216"
                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-216"><a
                                 href="https://themes.themegoods.com/grandtour/demo/tours/">Tours</a></li>
@@ -1668,7 +1761,6 @@
         });
     });
 </script>
-
 <script type='text/javascript'
         src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/plugins/booked/assets/js/spin.min.js'
         id='booked-spin-js-js'></script>
@@ -1724,7 +1816,6 @@
     };
     /* ]]> */
 </script>
-
 <script type='text/javascript'
         src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js'
         id='wc-add-to-cart-js'></script>
@@ -1801,21 +1892,19 @@
         src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-includes/js/wp-embed.min.js'
         id='wp-embed-js'></script>
 <script type='text/javascript'
-        src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/themes/grandtour/js/jarallax-video.js'
-        id='jarallax-video-js'></script>
-
-<script type='text/javascript'
         src='https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/themes/grandtour/js/jquery.cookie.js'
         id='grandtour-jquery-cookie-js'></script>
-
+<script type='text/javascript'
+        src='https://themes.themegoods.com/grandtour/demo/wp-admin/admin-ajax.php?action=grandtour_script_demo'
+        id='grandtour-script-demo-js'></script>
 </body>
 </html>
-<!-- End content -->
+
 <!--
 Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
 
 Page Caching using disk: enhanced (SSL caching disabled) 
 Content Delivery Network via themegoods-cdn-pzbycso8wng.stackpathdns.com
 
-Served from: themes.themegoods.com @ 2021-11-24 00:29:28 by W3 Total Cache
+Served from: themes.themegoods.com @ 2021-11-24 00:30:57 by W3 Total Cache
 -->

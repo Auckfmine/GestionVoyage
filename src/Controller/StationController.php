@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\api\MailerApi;
 use App\api\TwilioApi;
 use App\Entity\Station;
+use App\Entity\Voyage;
 use App\Form\StationType;
 use App\Repository\StationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +27,26 @@ class StationController extends AbstractController
     {
         return $this->render('station/index.html.twig', [
             'stations' => $stationRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/listStations", name="listStations", methods={"GET"})
+     */
+    public function listStations(StationRepository $stationRepository): Response
+    {
+        return $this->render('demo/shop/StationsShowCase.html.twig', [
+            'stations' => $stationRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/station-detail/{id}", name="station_detail", methods={"GET"})
+     */
+    public function stationDetail(Station $station): Response
+    {
+        return $this->render('demo/shop/backpack/detailStation.html.twig', [
+            'station' => $station,
         ]);
     }
 
