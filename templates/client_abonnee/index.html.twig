@@ -1,0 +1,67 @@
+{% extends "dashboard.html.twig" %}
+
+{% block body %}
+
+    {% for msg in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+        </div>
+    {% endfor %}
+
+    <div class="wrapper">
+        <h3>Liste des clients abonnés</h3>
+
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom Client</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Description Abonnement</th>
+            <th scope="col">Type Abonnement</th>
+            <th scope="col">Date Début</th>
+            <th scope="col">Date Fin</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for clients_abonnee in clients_abonnee %}
+            <tr>
+                <td>{{ clients_abonnee.id }}</td>
+                <td>{{ clients_abonnee.user.nom }}</td>
+                <td>{{ clients_abonnee.tel }}</td>
+                <td>{{ clients_abonnee.abonnementDisponible.type }}</td>
+                <td>{{ clients_abonnee.abonnementDisponible.descr }}</td>
+                <td>{{ clients_abonnee.dateDebut|date('d-m-Y') }}</td>
+                <td>{{ clients_abonnee.dateFin|date('d-m-Y') }}</td>
+                <td>
+                    <a href="{{ path('clients_abonnee_back_edit', {'id': clients_abonnee.id}) }}" class="btn btn-warning btn-sm mr-1 text-light">Modifier</a>
+                    <a href="{{ path('clients_abonnee_back_delete', {'id': clients_abonnee.id}) }}" class="btn btn-danger btn-sm text-light" onclick="return confirm('Vous voulez vraiment le supprimer ?');">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+
+{% block stylesheets %}
+
+    <style>
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+
+{% endblock %}

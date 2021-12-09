@@ -1,0 +1,244 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Abonnement
+{% endblock %}
+
+{% block body %}
+    <div class="row mt-5">
+        <div class="col-8">
+            <form name="form" method="POST" action="/abonnement/new/{{abonnementDisponible.id}}" class="form needs-validation" novalidate>
+                <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Choisir une période</legend>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="periode-card pink">
+                                    <h3 class="text-center">Prix Menseuiel</h3>
+                                    <h4 class="text-center">{{ abonnementDisponible.prixMois }}
+                                        DT</h4>
+                                    <div class="d-flex justify-content-center">
+                                        <input class="form-check-input" type="radio" name="periode" id="mois" value="{{ abonnementDisponible.prixMois }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="periode-card gold">
+                                    <h3 class="text-center">Prix Semestriel</h3>
+                                    <h4 class="text-center">{{ abonnementDisponible.prixSemestre }}
+                                        DT</h4>
+                                    <div class="d-flex justify-content-center">
+                                        <input class="form-check-input" type="radio" name="periode" id="semestre" value="{{ abonnementDisponible.prixSemestre }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="periode-card blue">
+                                    <h3 class="text-center">Prix Annuel</h3>
+                                    <h4 class="text-center">{{ abonnementDisponible.prixAnnuel }}
+                                        DT</h4>
+                                    <div class="d-flex justify-content-center">
+                                        <input class="form-check-input" type="radio" name="periode" id="annee" value="{{ abonnementDisponible.prixAnnuel }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback">
+                            Veuillez choisir période
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row mb-3">
+                    <label for="tel" class="col-sm-2 col-form-label">Téléphone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="tel" name="tel" pattern="\d{8}" required>
+                        <div class="invalid-feedback">
+                            Téléphone invalid
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="etat" class="col-sm-2 col-form-label">Etat sociale</label>
+                    <div class="col-sm-10">
+                        <select id="etat" name="etat" class="form-select" aria-label="Default select example" required>
+                            <option value="" disabled selected>Veuillez selection votre état sociale</option>
+                            <option value="etud">Elève / Etudiant</option>
+                            <option value="hand">Personne avec besoins spéciaux</option>
+                            <option value="norm">Personne normale</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Veuillez selection votre état sociale
+                        </div>
+                    </div>
+                </div>
+                <input name="prix" id="price" type="hidden">
+                <button type="submit" class="btn btn-primary">S'abonner</button>
+            </form>
+        </div>
+
+        <div class="col-4">
+
+            <img class="img" src="{{ asset('img/' ~ abonnementDisponible.type|lower ~ '.jpg') }}" alt=""/>
+            <h4>{{ abonnementDisponible.type|upper }}</h4>
+            <p>{{ abonnementDisponible.descr }}</p>
+            <div class="row justify-content-between price-content">
+                <div class="col-6">
+                    <h5>Prix</h5>
+                </div>
+                <div class="col-3">
+                    <h6 id="prix">-</h6>
+                </div>
+                <div class="col-6">
+                    <h5>Remise</h5>
+                </div>
+                <div class="col-3">
+                    <h6 id="remise">0.00</h6>
+                </div>
+                <hr>
+                <div class="col-6">
+                    <h4>Total</h4>
+                </div>
+                <div class="col-3">
+                    <h5 id="total">-</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .detail {
+            border: 1px gray solid;
+            border-radius: 5px;
+            height: 400px;
+            width: 50%;
+            padding: 20px;
+        }
+
+        .detail-content {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+
+        .periode-card {
+            width: 100%;
+            height: 125px;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        }
+
+        .pink {
+            background-color: #e6d2fa;
+        }
+
+        .gold {
+            background-color: #fafad2;
+        }
+
+        .blue {
+            background-color: #d2e6fa;
+        }
+
+        .img {
+            width: 100%;
+            vertical-align: top;
+            border-radius: 5px;
+        }
+
+        .price-content {
+            padding: 5px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let prix = document.getElementById("prix")
+        let remise = document.getElementById("remise")
+        let total = document.getElementById("total")
+
+
+        function calc_remise(prix) {
+            if (prix.innerHTML === "-")
+                return 0;
+
+
+
+            if (etat.value === "etud") {
+                remise.innerHTML = Number(prix.innerHTML) * - 0.3
+            } else if (etat.value === "hand") {
+                remise.innerHTML = Number(prix.innerHTML) * - 0.5
+            }
+
+        }
+
+
+        function calc_total(prix, remise) {
+            if (prix.innerHTML === "-")
+                return 0;
+
+
+
+            total.innerHTML = Number(prix.innerHTML) + Number(remise.innerHTML)
+            document.getElementById("price").value = total.innerHTML
+        }
+
+        var radios = document.forms["form"].elements["periode"];
+        for (radio in radios) {
+            radios[radio].onclick = function () {
+                prix.innerHTML = this.value
+                calc_remise(prix)
+                calc_total(prix, remise)
+            }
+        }
+        const etat = document.getElementById("etat")
+
+        etat.addEventListener('change', () => {
+            console.log(prix)
+            if (prix === "-")
+                return 0;
+
+
+
+            calc_remise(prix)
+            calc_total(prix, remise)
+        })
+    </script>
+
+
+    <script>
+        (function () {
+            'use strict'
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+// Loop over them and prevent submission
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (! form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+
+{% endblock %}

@@ -49,7 +49,7 @@ class DepotController extends AbstractController
     public function listVoy(DepotRepository $depotRepository): Response
     {
         return $this->render('demo/destination-fullwidth/DepotsShow.html.twig', [
-            'Depot' => $depotRepository->findAll(),
+            'Depots' => $depotRepository->findAll(),
         ]);
     }
 
@@ -90,6 +90,16 @@ class DepotController extends AbstractController
 
         return $this->render('depot/ListDepot.html.twig', [
             'depots' => $depots
+        ]);
+    }
+
+    /**
+     * @Route("/Depot_detail/{id}", name="Depot_detail", methods={"GET"})
+     */
+    public function voyageDetail(Depot $depot): Response
+    {
+        return $this->render('demo/tour/niko-trip/DepotDetailsliste.html.twig', [
+            'Depot' => $depot,
         ]);
     }
 

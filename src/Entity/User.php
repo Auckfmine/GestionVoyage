@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -97,6 +99,13 @@ class User implements UserInterface
     private $last_updated_user;
 
     protected $captchaCode;
+
+
+
+    public function __construct()
+    {
+
+    }
 
     public function getCaptchaCode()
     {
@@ -248,6 +257,8 @@ class User implements UserInterface
     {
 
     }
+
+
 
 
 

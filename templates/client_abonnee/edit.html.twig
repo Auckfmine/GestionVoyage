@@ -1,0 +1,16 @@
+{% extends "dashboard.html.twig" %}
+
+
+{% block body %}
+
+    <div class="text-left">
+        <form method="POST" action="/admin/abonnement_client/edit/{{ abonn.id }}">
+            <div class="mb-3">
+                <label for="tel" class="form-label">Téléphone</label>
+                <input type="text" class="form-control" id="tel" name="tel" value="{{ abonn.tel }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form>
+    </div>
+
+{% endblock %}
