@@ -205,7 +205,9 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
                 <div class="dropdown-item- px-3 py-2">
                     <img class="rounded-circle mr-2" src={{ asset('assets/img/avatar/avatar2.jpg') }} width="35" alt=""/>
-                    <span class="text-muted">Jhon Doe</span>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <span class="text-muted">{{ app.user.lastname }} {{ app.user.firstname }}</span>
+                    {% endif %}
                 </div>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">My Profile</a>
@@ -348,7 +350,36 @@
                             <li><a  href={{ path('depot_new') }}><i class="fas fa-plus-circle"></i>Ajouter Depot</a></li>
                         </ul>
                     </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="active">
+                            <i class="far fa-calendar-plus"></i>
+                            <span>Reservation</span>
+                        </a>
+                        <ul class="sub">
+                            <li class="sub-menu">
+                                <a  href="{{ path('reservation2_index') }}">Liste Reservation</a>
+                            </li>
+                            <li class="sub-menu">
+                                <a  href="{{ path('reservation2_new') }}">Ajouter Reservation</a>
+                            </li>
 
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="active">
+                            <i class="far fa-calendar-plus"></i>
+                            <span>MoyTransp</span>
+                        </a>
+                        <ul class="sub">
+                            <li class="sub-menu">
+                                <a  href="{{ path('moy_transport_index') }}">Liste MoyTransp</a>
+                            </li>
+                            <li class="sub-menu">
+                                <a  href="{{ path('moy_transport_new') }}">Ajouter MoyTransp</a>
+                            </li>
+
+                        </ul>
+                    </li>
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class=" ti-blackboard"></i>
