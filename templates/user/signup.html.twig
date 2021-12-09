@@ -8,6 +8,43 @@
 <link href="{{asset("Signup/daterangepicker.css") }}" rel="stylesheet" media="all">
 
 <!-- Main CSS-->
+<style>
+    .bg-gra-03
+    {
+        background: linear-gradient(to top right, #FED501 0%, #121212 100%) !important;
+    }
+    .btn {
+        text-transform: uppercase;
+        border-radius: .15rem;
+        width: 200px;
+        padding: .150rem .75rem;
+        margin: 30px auto;
+        font-family: 'PT Sans', sans-serif;
+        letter-spacing: 2px;
+    }
+
+    .btn-primary {
+        border-color: rgba( 255, 255, 255, 0);
+        background: #f1da36; /* Old browsers */
+        background: -moz-linear-gradient(left, #f1da36 0%, #fca86c 99%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #f1da36 0%,#fca86c 99%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #f1da36 0%,#fca86c 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1da36', endColorstr='#fca86c',GradientType=1 ); /* IE6-9 */
+        Color format:     Comments
+    }
+
+    .btn-primary:hover {
+        border-color: rgba( 255, 255, 255, 0);
+    }
+
+    #main .btn-primary {
+        width: 100%;
+    }
+    #secondary .btn-primary {
+        background: #f8f9fa4f;
+        color: #000;
+    }
+</style>
 <link href="{{asset("Signup/main.css" )}}" rel="stylesheet" media="all">
 <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
     <div class="wrapper wrapper--w790">
@@ -99,7 +136,7 @@
 
 
                 <div>
-                    {{ form_row(form_user.signup) }}
+                    {{ form_widget(form_user.signup,{'attr': {'class': 'btn btn-primary' }})  }}
                 </div>
                 {{ form_end (form_user) }}
             </div>
