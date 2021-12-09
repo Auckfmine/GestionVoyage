@@ -33,7 +33,9 @@ class IndexController extends AbstractController
     public function maps(): Response
     {
 
+
         return $this->render('map.html', [
+
             'controller_name' => 'IndexController',
         ]);
     }

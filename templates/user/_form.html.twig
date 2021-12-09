@@ -1,0 +1,9 @@
+{% extends 'dashboard.html.twig' %}
+{% block body %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+{{ form_end(form) }}
+{% endblock %}
