@@ -161,7 +161,7 @@ class DashBoardController extends AbstractController
 
 
     /**
-     * @Route("/statistiques", name="statistiques")
+     * @Route("/moyenTransport/statistiques", name="statistiques")
      */
     public function stats(): Response
     {
