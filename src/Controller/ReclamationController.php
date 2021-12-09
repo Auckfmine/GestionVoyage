@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Controller;
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Form\ReclamationType;
 use App\Repository\ReclamationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -93,5 +94,41 @@ class ReclamationController extends AbstractController
             'reclamations' => $reclamation,
             'form' => $form->createView(),
         ]);
+    }
+    /**
+     * @Route("/imprimer/pdf", name="imprimer_reclamation")
+     */
+    public function pdf(ReclamationRepository $reclamationRepository): Response
+
+    {
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', "Gill Sans MT");
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        $reclamation = $reclamationRepository->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('reclamation/pdf.html.twig', [
+            'reclamations' =>  $reclamation,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("Liste reclamation.pdf", [
+            "Attachment" => true
+        ]);
+
     }
 }
