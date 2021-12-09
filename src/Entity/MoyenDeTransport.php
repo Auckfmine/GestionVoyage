@@ -101,10 +101,7 @@ class MoyenDeTransport
     /**
      * @param $id
      */
-    public function __construct($id)
-    {
-        $this->id = $id;
-    }
+
 
     public function getId(): ?int
     {
@@ -254,5 +251,13 @@ class MoyenDeTransport
         $this->depot = $depot;
 
         return $this;
+    }
+
+
+    public function __toString(){
+        // to show the name of the Category in the select
+        return (string)$this->getId();
+        // to show the id of the Category in the select
+        // return $this->id;
     }
 }
