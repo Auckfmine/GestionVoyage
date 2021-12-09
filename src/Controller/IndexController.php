@@ -19,10 +19,11 @@ class IndexController extends AbstractController
 {
     /**
      * @Route("/", name="index")
-     * @throws TransportExceptionInterface
      */
     public function home(): Response
     {
+
+
 
         return $this->render('/demo/index.html.twig', [
             'controller_name' => 'IndexController',
@@ -38,7 +39,9 @@ class IndexController extends AbstractController
     public function maps(): Response
     {
 
+
         return $this->render('map.html', [
+
             'controller_name' => 'IndexController',
         ]);
     }

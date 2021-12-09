@@ -1,0 +1,108 @@
+<link href="{{ asset("Signup/material-design-iconic-font.css")}}" rel="stylesheet" media="all">
+<link href="{{ asset("Signup/font-awesome.min.css") }}" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+<!-- Vendor CSS-->
+<link href="{{ asset("Signup/select2.min.css") }}" rel="stylesheet" media="all">
+<link href="{{asset("Signup/daterangepicker.css") }}" rel="stylesheet" media="all">
+
+<!-- Main CSS-->
+<link href="{{asset("Signup/main.css" )}}" rel="stylesheet" media="all">
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+        <div class="card card-5">
+            <div class="card-heading">
+                <h2 class="title">SignUp</h2>
+            </div>
+            <div class="card-body">
+                {{ form_start(form_user,{'attr':{'novalidate': 'novalidate'}}) }}
+                <div class="form-row m-b-55">
+                    <div class="name">Name</div>
+                    <div class="value">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group-desc">
+
+                                    {{ form_widget(form_user.first_name,{'attr': {'class': 'input--style-5' }}) }}
+
+                                    <label class="label--desc">{{ form_label(form_user.first_name) }}</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group-desc">
+                                    {{ form_widget(form_user.last_name,{'attr': {'class': 'input--style-5' }}) }}
+                                    <label class="label--desc">{{ form_label(form_user.last_name) }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="name">{{ form_label(form_user.username) }}</div>
+                    <div class="value">
+                        <div class="input-group">
+                            {{ form_widget(form_user.username, {'attr': {'class': 'input--style-5' }}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="name">{{ form_label(form_user.password) }}</div>
+                    <div class="value">
+                        <div class="input-group">
+                            {{ form_widget(form_user.password, {'attr': {'class': 'input--style-5' }}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="name">{{ form_label(form_user.email) }}</div>
+                    <div class="value">
+                        <div class="input-group">
+                            {{ form_widget(form_user.email,{'attr': {'class': 'input--style-5' }}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="name">{{ form_label(form_user.number) }}</div>
+                    <div class="value">
+                        <div class="input-group">
+                            {{ form_widget(form_user.number,{'attr': {'class': 'input--style-5' }}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="name">{{ form_label(form_user.birthday) }}</div>
+                    <div class="value">
+                        <div class="input-group">
+                            {{ form_widget(form_user.birthday,{'attr': {'class': 'input--style-5' }}) }}
+                        </div>
+                    </div>
+                </div>
+                {% set formErrors=form_errors(form_user.captchaCode) %}
+                {% if formErrors|length %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for error in formErrors %}
+                                <li>{{ error.message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <div class="form-row">
+                    <div class="name">{{ form_label(form_user.captchaCode) }}</div>
+                    <div class="value">
+                        <div class="input-group">
+                            {{ form_widget(form_user.captchaCode,{'attr': {'class': 'input--style-5' }}) }}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    {{ form_row(form_user.signup) }}
+                </div>
+                {{ form_end (form_user) }}
+            </div>
+        </div>
+    </div>
+</div>
