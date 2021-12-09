@@ -28,37 +28,37 @@ class ReclamationController extends AbstractController
     }
 
     /**
-     * @Route("/AfficheR")
+     * @Route("/AfficheR",name="afficher_reclamation")
      */
     function AfficheR(ReclamationRepository $repository){
         // $repository=$this->getDoctrine()->getRepository(Reclamation::class); //principe d'injection de dépendance
         $reclamation=$repository->findAll();
         return $this->render("reclamation/AfficheR.html.twig",
-            ['reclamation'=>$reclamation]);
+            ['reclamations'=>$reclamation]);
     }
     /**
      * @Route("Supp/{id}",name="d")
      */
-    function Delete($id, ReclamationRepository $repository){
-        $reclamation=$repository->find($id);
-        $em=$this->getDoctrine()->getManager();
-        $em=$this->remove($reclamation);
-        $em=$this->flush();
-        return $this->redirectToRoute('AfficheR');
+    function Delete(int $id){
+        $entityManager = $this->getDoctrine()->getManager();
+        $reclamation = $entityManager->getRepository(Reclamation::class)->find($id);
+        $entityManager->remove($reclamation);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("afficher_reclamation");
     }
 
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("reclamation/Ajout")
+     * @Route("reclamation/Ajout",name="ajouter_reclamation")
      */
 
     function AjoutR(Request $request){
         //Appel de la vue
         //$form=$this->createFormBuilder(Reclamation::class);
         $reclamation=new Reclamation();
-        $form=$this->createForm(ReclamationType::class,$reclamation)
-            ->add("Ajouter",SubmitType::class);
+        $form=$this->createForm(ReclamationType::class,$reclamation);
         $form->handleRequest($request);//récupère les données à partir des inputs
         //Ajout
         if($form->isSubmitted()&& $form->isValid()){
@@ -68,8 +68,8 @@ class ReclamationController extends AbstractController
         }
 
         //Appel de la vue
-        return $this->render("reclamation/AjoutC.html.twig",
-            ["f"=>$form->createView()]
+        return $this->render("reclamation/form.html.twig",
+            ["form"=>$form->createView()]
         );
     }
 }

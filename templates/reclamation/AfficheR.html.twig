@@ -1,0 +1,70 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Station index{% endblock %}
+
+{% block body %}
+
+    <h1>Liste Des Stations</h1>
+
+    <input type="text" id="search" class="form-control" placeholder="Search">
+    <table id="tableac" class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Object</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.username }}</td>
+                <td>{{ reclamation.object }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('d', {'id': reclamation.id}) }}">Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-warning" href="{{ path('ajouter_reclamation') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}
