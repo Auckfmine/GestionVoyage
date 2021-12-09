@@ -4,16 +4,11 @@ namespace App\Entity;
 
 use App\Repository\MoyenDeTransportRepository;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\String_;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=MoyenDeTransportRepository::class)
- *  @UniqueEntity(
- *     fields={"id"},
- *     message="id already exist !"
- * )
  */
 class MoyenDeTransport
 {
@@ -26,7 +21,8 @@ class MoyenDeTransport
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Type is required")
+     *  @Assert\NotBlank(message="Type is required")
+     *
      */
     private $Type;
 
@@ -40,7 +36,7 @@ class MoyenDeTransport
      * @ORM\Column(type="date")
      * @Assert\NotBlank(message="Date_de_mise_en_circulations is required")
      */
-    private $Date_de_mise_en_circulations;
+    private $Date_de_mise_en_circulation;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -55,26 +51,32 @@ class MoyenDeTransport
     private $Accessible_au_handicape;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Prix_Achat is required")
+     * @Assert\GreaterThan(100000,message="verifier le prix en Dt minimum 100000Million")
      */
     private $Prix_Achat;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Poids is required")
+     * @Assert\GreaterThan(100,message="verifier le Poids en Kg minimum 100kg")
      */
     private $Poids;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Longueur is required")
+     * @Assert\GreaterThan(3,message="verifier la Longuer en M minimum 3m")
+     * @Assert\LessThan(20,message="verifier la Longuer en M maximum 20m")
      */
     private $Longueur;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Largeur is required")
+     * @Assert\GreaterThan(1,message="verifier la Largeur en M minimum 1m")
+     * @Assert\LessThan(4,message="verifier la Largeur en M maximum 4m")
      */
     private $Largeur;
 
@@ -87,11 +89,12 @@ class MoyenDeTransport
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Nombre_de_place is required")
+     * @Assert\GreaterThan(40,message="verifier les nombres de place minimum 40 places")
      */
     private $Nombre_de_place;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Depot::class, inversedBy="MoyenDeTransport")
+     * @ORM\ManyToOne(targetEntity=Depot::class, inversedBy="moyenDeTransport")
      */
     private $depot;
 
@@ -124,17 +127,18 @@ class MoyenDeTransport
         return $this;
     }
 
-    public function getDateDeMiseEnCirculations(): ?\DateTimeInterface
+    public function getDateDeMiseEnCirculation(): ?\DateTimeInterface
     {
-        return $this->Date_de_mise_en_circulations;
+        return $this->Date_de_mise_en_circulation;
     }
 
-    public function setDateDeMiseEnCirculations(\DateTimeInterface $Date_de_mise_en_circulations): self
+    public function setDateDeMiseEnCirculation(\DateTimeInterface $Date_de_mise_en_circulation): self
     {
-        $this->Date_de_mise_en_circulations = $Date_de_mise_en_circulations;
+        $this->Date_de_mise_en_circulation = $Date_de_mise_en_circulation;
 
         return $this;
     }
+
 
     public function getEtat(): ?string
     {
@@ -160,12 +164,12 @@ class MoyenDeTransport
         return $this;
     }
 
-    public function getPrixAchat(): ?string
+    public function getPrixAchat(): ?float
     {
         return $this->Prix_Achat;
     }
 
-    public function setPrixAchat(string $Prix_Achat): self
+    public function setPrixAchat(float $Prix_Achat): self
     {
         $this->Prix_Achat = $Prix_Achat;
 
@@ -242,12 +246,5 @@ class MoyenDeTransport
         $this->depot = $depot;
 
         return $this;
-    }
-
-    public function __toString(){
-        // to show the name of the Category in the select
-        return (String)$this->getId();
-        // to show the id of the Category in the select
-        // return $this->id;
     }
 }

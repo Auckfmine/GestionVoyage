@@ -1,4 +1,9 @@
+{% block body %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_errors(form) }}
+<button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
+
 {{ form_end(form) }}
+{% endblock %}
