@@ -478,8 +478,10 @@ body, input[type=text], input[type=password], input[type=email], input[type=url]
 				<div id="nav_wrapper">
 					<div class="nav_wrapper_inner">
 						<div id="menu_border_wrapper">
-							<div class="menu-main-menu-container"><ul id="main_menu" class="nav"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children  menu-item-11"><a href={{ path('index') }} aria-current="page">Acceuil</a>
-
+							<div class="menu-main-menu-container">
+								<ul id="main_menu" class="nav">
+									<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children  menu-item-11">
+										<a href={{ path('index') }} aria-current="page">Acceuil</a>
 									</li>
 									<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12"><a href={{ path('list_voyages') }}>Voyages</a>
 
@@ -505,16 +507,7 @@ body, input[type=text], input[type=password], input[type=email], input[type=url]
 
 										</ul>
 									</li>
-									<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children arrow menu-item-13"><a href="#">Depos des vehicules</a>
-										<ul class="sub-menu">
-											<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-299"><a href="https://themes.themegoods.com/grandtour/demo/destination-fullwidth/">Destination Fullwidth</a></li>
-											<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-311"><a href="https://themes.themegoods.com/grandtour/demo/destination-video-header/">Destination + Video Header</a></li>
-											<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-303"><a href="https://themes.themegoods.com/grandtour/demo/destination-right-sidebar/">Destination Right Sidebar</a></li>
-											<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-307"><a href="https://themes.themegoods.com/grandtour/demo/destination-left-sidebar/">Destination Left Sidebar</a></li>
-											<li class="menu-item menu-item-type-post_type menu-item-object-destination menu-item-286"><a href="https://themes.themegoods.com/grandtour/demo/destination/venice/">Single Destination</a></li>
-											<li class="menu-item menu-item-type-post_type menu-item-object-destination menu-item-283"><a href="https://themes.themegoods.com/grandtour/demo/destination/paris/">Single Destination + Video</a></li>
-										</ul>
-									</li>
+									<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-13"><a href={{ path('depot_liste_front') }}>Les Depots</a> </li>
 									<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children arrow menu-item-14"><a href="#">Abonnement</a>
 										<ul class="sub-menu">
 											<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2468"><a href="https://themes.themegoods.com/grandtour/demo/about-us/">About Us</a></li>
@@ -538,11 +531,12 @@ body, input[type=text], input[type=password], input[type=email], input[type=url]
 									<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-16"><a href="#">A propos</a>
 
 									</li>
-
 								</ul>
 
 
-							</div>	        		</div>
+							</div>
+
+							</div>
 					</div>
 
 					<!-- Begin right corner buttons -->

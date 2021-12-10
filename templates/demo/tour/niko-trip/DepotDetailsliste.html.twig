@@ -477,7 +477,8 @@ body, input[type=text], input[type=password], input[type=email], input[type=url]
 	        <div id="nav_wrapper">
 	        	<div class="nav_wrapper_inner">
 	        		<div id="menu_border_wrapper">
-	        			<div class="menu-main-menu-container"><ul id="main_menu" class="nav"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children arrow menu-item-11">
+						<div class="menu-main-menu-container"><ul id="main_menu" class="nav"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children  menu-item-11">
+									<a href={{ path('index') }} aria-current="page">Acceuil</a>
 								</li>
 								<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12"><a href={{ path('list_voyages') }}>Voyages</a>
 
@@ -676,7 +677,7 @@ body, input[type=text], input[type=password], input[type=email], input[type=url]
 </div>
 <div class="sidebar_content ">
 					
-			<h1>{{ Depot.getLocalisation() }}</h1>
+			<h1>Depot {{ Depot.getLocalisation() }}</h1>
 
 
 
