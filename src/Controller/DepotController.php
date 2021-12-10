@@ -104,6 +104,14 @@ class DepotController extends AbstractController
     }
 
     /**
+     * @Route("/map")
+     */
+    public function mapAction()
+    {
+        return $this->render('depot/newMap.html.twig');
+    }
+
+    /**
      * @Route("/new", name="depot_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager,MailerInterface $mailer,FlashyNotifier $flashy): Response
