@@ -5,13 +5,14 @@
 {% block body %}
 
     <input type="text" id="search" class="form-control" placeholder="Search">
-    <div class="container">
+
 
     {% for message in app.flashes('info')  %}
         <div class="alert-success" role="alert">
         {{ message }}
+        </div>
     {% endfor%}
-    </div>
+
 
     <h1 class="text-center"> Les Moyens De Transport Disponibles </h1>
 

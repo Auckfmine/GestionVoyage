@@ -66,11 +66,12 @@ class StationController extends AbstractController
             $entityManager->flush();
 
             $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','f9a23e828a3f17c9441b94a32d1678a3','+14704444081');
             $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien ajoutée ");
             $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien ajoutée ");
 
-
+            $this->addFlash(
+                'info' ,' Station  Ajoutée avec success !');
             return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -103,11 +104,12 @@ class StationController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','f9a23e828a3f17c9441b94a32d1678a3','+14704444081');
             $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien modifiée ");
             $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien modifiée ");
 
-
+            $this->addFlash(
+                'info' ,' Station modifiée avec success !');
 
 
             return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);
@@ -125,16 +127,18 @@ class StationController extends AbstractController
      */
     public function delete(MailerInterface $mailer,Request $request, Station $station): Response
     {
+        $email = new MailerApi();
+        $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','f9a23e828a3f17c9441b94a32d1678a3','+14704444081');
         if ($this->isCsrfTokenValid('delete'.$station->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($station);
             $entityManager->flush();
 
-            $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
-            $twilio->sendSMS('+21625892319',"la station ayant le code : {$station->getRefStation()} a été bien supprimée ");
-            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien supprimée ");
 
+            $twilio->sendSMS('+21625892319',"la station ayant le code :  a été bien supprimée ");
+            $email->sendEmail( $mailer,'mouhamedaminerouatbi@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"la station ayant le code : {$station->getRefStation()} a été bien supprimée ");
+            $this->addFlash(
+                'info' ,' Station supprimée avec success !');
         }
 
         return $this->redirectToRoute('station_index', [], Response::HTTP_SEE_OTHER);

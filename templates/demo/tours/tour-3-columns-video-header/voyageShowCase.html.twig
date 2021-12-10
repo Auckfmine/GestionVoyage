@@ -1137,14 +1137,14 @@
 
                                     <div  class="one_third gallery3 grid static filterable portfolio_type themeborder"
                                          data-id="post-2"
-                                         style="background-image:url(https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandtour/demo/wp-content/uploads/2016/12/pexels-photo-211051-700x466.jpeg);">
+                                         style="background-image:url({{ voyage.getMoyenDeTransport().getType()=="Bus"?"http://127.0.0.1:8000/assets/img/bus.jpg":voyage.getMoyenDeTransport().getType()=="Train"?"http://127.0.0.1:8000/assets/img/train.jpg":"http://127.0.0.1:8000/assets/img/metro.jpg" }});">
                                         <a class="tour_image"
                                            href={{ path('voyage_detail',{id:voyage.id}) }}></a>
 
 
                                         <div class="portfolio_info_wrapper">
                                             <div class="tour_price ">
-                                                12,5 dt
+                                                {{ random(20, 45) }}Dt
                                             </div>
                                             <h4>{{ voyage.getStationDepart() }} - {{ voyage.getStationArrive() }}</h4>
                                             <div class="tour_attribute_wrapper">
@@ -1158,14 +1158,14 @@
                                                                     href="javascript:;"></a></div>
                                                     </div>
                                                     <div class="tour_attribute_rating_count">
-                                                        4&nbsp;
+                                                        {{ random(3, 6) }}
                                                         reviews
                                                     </div>
                                                 </div>
 
                                                 <div class="tour_attribute_days">
                                                     <span class="ti-time"></span>
-                                                    30&nbsp;minutes
+                                                    {{ random(60, 220) }} minutes
                                                 </div>
                                             </div>
                                             <br class="clear"/>
