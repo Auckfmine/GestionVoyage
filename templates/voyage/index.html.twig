@@ -3,15 +3,17 @@
 {% block title %}Voyage index{% endblock %}
 
 {% block body %}
-
-
-{% for message in app.flashes('info')  %}
-<div class="alert-success" role="alert">
-    {{ message }}
-    {% endfor%}
     <h1>Liste Des Voyages</h1>
 
     <input type="text" id="search" class="form-control" placeholder="Search">
+
+    {% for message in app.flashes('info')  %}
+        <div class="alert-success" role="alert">
+        {{ message }}
+        </div>
+    {% endfor%}
+
+
     <table id ="tableac" class="table">
         <thead>
             <tr>

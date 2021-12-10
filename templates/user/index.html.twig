@@ -4,6 +4,17 @@
         <input id="search" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
         <a class="btn btn-primary" href="{{path('imprimer_index')}}" > Imprimer </a>
     <script src="{{ asset('Signup/vendor/jquery/jquery.min.js') }}"></script>
+    {% for message in app.flashes('mercuryseries_flashy_notification') %}
+        <script id="flashy-template" type="text/template">
+            <div class="flashy flashy--{{ message.type }}">
+                <a class="flashy__body" href="#" target="_blank"></a>
+            </div>
+        </script>
+
+        <script>
+            flashy("{{ message.message }}", "{{ message.link }}");
+        </script>
+    {% endfor %}
                 <table id="tableac" class="table">
                     <thead>
                         <tr>
@@ -49,7 +60,8 @@
                     </tbody>
                 </table>
     <a class="btn btn-warning" href="{{ path('add_user') }}">Create new</a>
-
+{% endblock %}
+{% block javascripts %}
     <script>
         $(document).ready(function(){
             $('#search').keyup(function(){
