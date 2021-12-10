@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
+use App\Entity\Depot;
 use App\Entity\MoyenDeTransport;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -76,6 +79,11 @@ class MoyenDeTransportType extends AbstractType
                     'Gaz '=>'Gaz'
                 ],])
             ->add('Nombre_de_place')
+
+            ->add('Depot',EntityType::class,['class'=>Depot::class,
+                'choice_label'=>'Localisation',
+                'label'=>'Depot'
+            ])
 
         ;
     }
