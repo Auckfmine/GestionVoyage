@@ -400,104 +400,25 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class=" ti-blackboard"></i>
-                            <span>Widgets </span> <span class="badge badge-danger ml-2">2</span>
+                        <a href="javascript:;" class="active">
+                            <i class="far fa-user"></i>
+                            <span>Reclamation</span>
                         </a>
                         <ul class="sub">
-                            <li><a  href="dashboard/thevectorlab.net/codelab/widget-basic.html">Widgets Base</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/widget-chart.html">Widgets Chart</a></li>
+                            <li class="active"><a  href="{{ path('afficher_reclamation') }}">Liste Reclamations</a></li>
+                            <li><a  href="{{ path('ajouter_reclamation') }}">Ajouter Reclamation</a></li>
+
                         </ul>
                     </li>
-
                     <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class=" ti-pencil-alt"></i>
-                            <span>Icons</span>
+                        <a href="javascript:;" class="active">
+                            <i class="far fa-user"></i>
+                            <span>Category</span>
                         </a>
                         <ul class="sub">
-                            <li><a  href="dashboard/thevectorlab.net/codelab/icon-fontawesome.html">Fontawesome Icons</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/icon-themify.html">Themify Icons</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/icon-simple-line.html">Simple line Icons</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/icon-weather.html">Weather Icons</a></li>
-                        </ul>
-                    </li>
+                            <li class="active"><a  href="{{ path('afficher_category') }}">Liste Des Catégories</a></li>
+                            <li><a  href="{{ path('ajouter_category') }}">Ajouter Catégorie</a></li>
 
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class=" ti-layers"></i>
-                            <span>BS Elements</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a  href={{ path('voyage_statistiques') }}>Alerts</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/buttons.html">Buttons</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/dropdown.html">Dropdowns</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/modals.html">Modals</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/progress.html">Progress</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/popover-tooltips.html">Popover & Tooltips</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/tabs-accordion.html">Tabs & Accordion</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/toastr-notification.html">Toastr Notification</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/typography.html">Typography</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/tree.html">Tree</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="sub-menu">
-                        <a href="javascript:;" >
-                            <i class=" icon-equalizer"></i>
-                            <span>Extra Pages</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a  href="dashboard/thevectorlab.net/codelab/profile.html">Profile</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/invoice.html">Invoice</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/lock-screen.html">Lock Screen</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/login.html">Login</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/registration.html">Registration</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/404.html">404 Error</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-title">
-                        <h5 class="text-uppercase">Layouts & Multi Level Menu</h5>
-                    </li>
-
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class=" ti-layout"></i>
-                            <span>Layouts</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a  href="dashboard/thevectorlab.net/codelab/layout-blank.html">Blank Default</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/layout-fixed-header.html">Fixed Header</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/layout-header-color.html">Colorful Header</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/layout-leftnav-color.html">Left Nav Color</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/layout-leftnav-white.html">Left Nav White</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/layout-leftnav-collapsed.html">Collapsed Left Nav</a></li>
-                            <li><a  href="dashboard/thevectorlab.net/codelab/layout-top-nav.html">Top Nav</a></li>
-                        </ul>
-                    </li>
-
-                    <!--multi level menu start-->
-                    <li class="sub-menu">
-                        <a href="javascript:;" >
-                            <i class=" ti-paint-bucket"></i>
-                            <span>Multi level Menu</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a  href="javascript:;">Menu Item 1</a></li>
-                            <li class="sub-menu">
-                                <a  href="#">Menu Item 2</a>
-                                <ul class="sub">
-                                    <li><a  href="javascript:;">Menu Item 2.1</a></li>
-                                    <li class="sub-menu">
-                                        <a  href="javascript:;">Menu Item 3</a>
-                                        <ul class="sub">
-                                            <li><a  href="javascript:;">Menu Item 3.1</a></li>
-                                            <li><a  href="javascript:;">Menu Item 3.2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
                     <!--multi level menu end-->
