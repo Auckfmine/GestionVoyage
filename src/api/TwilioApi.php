@@ -1,6 +1,7 @@
 <?php
 
 namespace App\api;
+use Twilio\Exceptions\ConfigurationException;
 use Twilio\Exceptions\TwilioException;
 use Twilio\Rest\Client ;
 use function PHPUnit\Framework\throwException;
@@ -30,6 +31,7 @@ class TwilioApi
      * @param string $auth_token
      * @param string $twilio_number
      * @param $client
+     * @throws ConfigurationException
      */
     public function __construct(string $account_sid, string $auth_token, string $twilio_number)
     {
@@ -45,6 +47,7 @@ class TwilioApi
         try {
             $this->client->messages->create($phoneNumber,array('from'=>$this->twilio_number,'body'=> $message));
             echo 'sms sent successfully';
+            echo '<script>alert("sms sent successfuly")</script>';
         }
         catch (TwilioException $e){
             echo 'error sending sms';

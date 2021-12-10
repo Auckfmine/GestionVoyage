@@ -68,6 +68,7 @@ class VoyageController extends AbstractController
 
     /**
      * @Route("/new", name="voyage_new", methods={"GET","POST"})
+     * @throws TransportExceptionInterface
      */
     public function new(MailerInterface $mailer,Request $request,FlashyNotifier $flashy): Response
     {
@@ -82,7 +83,7 @@ class VoyageController extends AbstractController
 
 
             $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','f9a23e828a3f17c9441b94a32d1678a3','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien ajouté ");
             $this->addFlash(
@@ -119,7 +120,7 @@ class VoyageController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','f9a23e828a3f17c9441b94a32d1678a3','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien modifié ");
             $this->addFlash(
@@ -147,7 +148,7 @@ class VoyageController extends AbstractController
             $entityManager->flush();
 
             $email = new MailerApi();
-            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','ecdfa5a81cf8875b8a5a2cfa166a0df8','+14704444081');
+            $twilio = new TwilioApi('AC827499c505a0825c13b9c15a5e57dcde','f9a23e828a3f17c9441b94a32d1678a3','+14704444081');
             $twilio->sendSMS('+21625892319',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
             $email->sendEmail( $mailer,'tunisport32@gmail.com','mouhamedaminerouatbi@gmail.com','testing email',"le voyage ayant le code : {$voyage->getRefVoyage()} a été bien supprimé ");
 
