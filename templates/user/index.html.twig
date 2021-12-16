@@ -1,0 +1,81 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+        <input id="search" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+        <a class="btn btn-primary" href="{{path('imprimer_index')}}" > Imprimer </a>
+    <script src="{{ asset('Signup/vendor/jquery/jquery.min.js') }}"></script>
+                <table id="tableac" class="table">
+                    <thead>
+                        <tr>
+
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Number</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Role</th>
+                            <th>Birthday</th>
+                            <th>Created user date</th>
+                            <th>Last updated user</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.getFirstName() }}</td>
+                            <td>{{ user.getLastName() }}</td>
+                            <td>{{ user.getEmail() }}</td>
+                            <td>{{ user.getNumber() }}</td>
+                            <td>{{ user.getUsername() }}</td>
+                            <td>{{ user.getPassword() }}</td>
+                            <td>{{ user.getRole() }}</td>
+                            <td>{{ user.getBirthday()|date("m/d/Y") }}</td>
+                            <td>{{ user.getCreatedDateUser()|date('Y-m-d H:i:s') }}</td>
+                            <td>{{ user.getLastUpdatedUser()|date('Y-m-d H:i:s') }}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ path('delete_user', {'id': user.id}) }}">delete</a>
+                                <a class="btn btn-danger" href="{{ path('modify_user', {'id': user.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+    <a class="btn btn-warning" href="{{ path('add_user') }}">Create new</a>
+
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}

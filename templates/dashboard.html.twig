@@ -13,6 +13,8 @@
 
     <title>Home</title>
     <!--web fonts-->
+    <link rel="stylesheet" href="{{ asset('flashy/flashy.css') }}">
+
     <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -45,6 +47,7 @@
     <script src={{ asset('assets/vendor/respond.min.js') }}></script>
 
 
+
     <![endif]-->
 
 </head>
@@ -61,7 +64,9 @@
 
         <!--brand start-->
         <div class="navbar-brand pos-fixed">
+
             <a class="" href={{ path('dash_board') }}>
+
                 <img src={{ asset('assets/img/logo.png') }} srcset={{ asset('assets/img/logo.png') }}  alt="CodeLab">
             </a>
         </div>
@@ -250,8 +255,17 @@
                             <span>Utilisateur</span>
                         </a>
                         <ul class="sub">
-                            <li class="active"><a  href="#">Liste Utilisateurs</a></li>
-                            <li><a  href="#">Ajouter Utilisateur</a></li>
+
+                            <li class="sub-menu">
+                                <a  href={{ path('user') }}>Liste Utilisateurs</a>
+                            </li>
+                            <li class="sub-menu">
+                                <a  href={{ path('add_user') }}>Ajouter Utilisateur</a>
+                            </li>
+                            <li class="sub-menu">
+                                <a  href={{ path('user_statistiques') }}>Statistique Utilisateur</a>
+                            </li>
+
 
                         </ul>
                     </li>
@@ -468,7 +482,7 @@
 
     <!--main content wrapper-->
     <div class="content-wrapper">
-        <div class="container text-center" style="width:600px !important; height: 480px !important;">
+        <div class="container">
             {% block body %}
             {% endblock %}
         </div>
@@ -672,7 +686,20 @@
 
     {% endblock %}
 {% block javascripts %}
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="{{ asset('flashy/flashy.js') }}"></script>
 {% endblock %}
+{% for message in app.flashes('mercuryseries_flashy_notification') %}
+    <script id="flashy-template" type="text/template">
+        <div class="flashy flashy--{{ message.type }}">
+            <a class="flashy__body" href="#" target="_blank"></a>
+        </div>
+    </script>
+
+    <script>
+        flashy("{{ message.message }}", "{{ message.link }}");
+    </script>
+{% endfor %}
 </body>
 
 <!-- Mirrored from thevectorlab.net/codelab/detailVoyage.html.twig.twig.twig by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 23:41:40 GMT -->

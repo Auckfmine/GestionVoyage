@@ -1,0 +1,112 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %} Statistiques{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+{% block body %}
+    <div class="container" style="width: 600px !important; height: 480px !important;">
+        <h1>Statistiques Pour Le Module User</h1>
+        <canvas id="users" width="100" height="100" style="margin-top :50px !important;"></canvas>
+        <canvas id="roles" width="100" height="100" style="margin-top :50px !important;"></canvas>
+        <canvas id="vehicules" width="100" height="100" style="margin-top :50px !important;"></canvas>
+    </div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
+    <script>
+
+        const dates = {{ userCreatedDate|raw }}
+        const newDates = [];
+        dates.forEach(date=>{
+            newDates.push(date.date.split(" ")[0]);
+        })
+        const finalDates = [...new Set(newDates)]
+
+        //set the color of bars dynamically
+        let backGroundColor = [];
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        //we need to get the exact number of dates
+        finalDates.forEach(date=>{
+            //set random rgb values for each date
+            backGroundColor.push(`rgba(${getRandomInt(1,256)}, ${getRandomInt(1,99)}, ${getRandomInt(1,256)}, 0.2)`)
+        })
+        let secondChartBackGroundColor = []
+        let thirdChartBackGroundColor = []
+
+        let NombreRoles = {{ role|raw }} ;
+        NombreRoles.forEach(role=>{
+            secondChartBackGroundColor.push(`rgba(${getRandomInt(1,256)}, ${getRandomInt(1,99)}, ${getRandomInt(1,256)}, 0.2)`)
+        })
+
+        const ctx = document.querySelector("#users").getContext('2d');
+        const ctx2 = document.querySelector("#roles").getContext('2d');
+        const ctx3 = document.querySelector("#vehicules").getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: finalDates,
+                datasets: [{
+                    label: 'Nombre de user complets',
+                    data: {{ finalDates|raw }},
+                    backgroundColor: backGroundColor,
+                    borderColor: backGroundColor,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+
+                        beginAtZero: true
+                    }
+                },
+
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Nombre de user par Date de Creation'
+                    }
+                }
+
+            }
+        });
+        const stationChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: {{ role|raw }},
+                datasets: [{
+                    label: 'Nombre de user par role',
+                    data: {{ finalroles|raw }},
+                    backgroundColor: secondChartBackGroundColor,
+                    borderColor: secondChartBackGroundColor,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+
+                        beginAtZero: true
+                    }
+                },
+
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Nombre de User par Role'
+                    }
+                }
+
+            }
+        });
+
+    </script>
+{% endblock %}
